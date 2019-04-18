@@ -22,3 +22,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/template',function (){
     return view('base');
 });
+
+Route::get('/listeproject', 'project\ProjectController@index')->name('project');
