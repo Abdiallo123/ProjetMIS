@@ -27,3 +27,7 @@ Route::get('/listeproject', 'project\ProjectController@index')->name('liste');
 Route::get('/addproject', 'project\ProjectController@create')->name('add');
 
 Route::post('/addproject', 'project\ProjectController@store')->name('store');
+
+Route::get('/listetask', 'Task\TaskController@index')->name('listet');
+Route::get('/addtask', 'Task\TaskController@create')->name('addt');
+Route::post('/addtasks', 'Task\TaskController@store')->name('storet');
