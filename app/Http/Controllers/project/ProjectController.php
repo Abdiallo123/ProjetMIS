@@ -17,8 +17,9 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
+        //dd($projects);
 
-        return view('project.listproject', compact('project'));
+        return view('project.listproject', compact('projects'));
     }
 
     /**
@@ -28,7 +29,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('project.addproject');
     }
 
     /**
@@ -39,7 +40,17 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Project::create([
+            'nom' => $request->nom,
+            'description' => $request->description,
+            'date_debut' => $request->date_debut,
+            'date_fin' => $request->date_fin,
+            'client' => $request->client,
+            'etat' => $request->etat,
+            'type' => $request->type
+        ]);
+
+        return redirect()->route('liste');
     }
 
     /**
@@ -50,7 +61,7 @@ class ProjectController extends Controller
      */
     public function show(project $project)
     {
-        //
+        
     }
 
     /**

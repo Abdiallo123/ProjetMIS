@@ -1,7 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
-    <div class="<table class="table">
+    <div>
+    <table>
         <thead>
             <tr>
                 <th>nom</th>
@@ -11,25 +12,23 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                @if (count($event)>0)
-                    @foreach ($project as $project)
-                    <td>{{$project->nom}}</td>
-                    <td>{{$project->description}}</td>
-                    <td>{{$project->datedebut}}</td>
-                    <td>{{$project->datefin}}</td> 
-
+            
+                @if (count($projects)>0)
+                    @foreach ($projects as $project)
+                        <tr>
+                        <td>{{$project->nom}}</td>
+                        <td>{{$project->description}}</td>
+                        <td>{{$project->date_debut}}</td>
+                        <td>{{$project->date_fin}}</td> 
+                        </tr>
                     @endforeach
                     
                 @endif
                     
-                <td scope="row"></td>
-                
-                <td></td>
-            </tr>
+           
             
         </tbody>
-    </table>">
+    </table>
 
     </div>
 
