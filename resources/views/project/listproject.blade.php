@@ -12,8 +12,8 @@
         </thead>
         <tbody>
             <tr>
-                @if (count($event)>0)
-                    @foreach ($project as $project)
+                @if (count($projects)>0)
+                    @foreach ($projects as $project)
                     <td>{{$project->nom}}</td>
                     <td>{{$project->description}}</td>
                     <td>{{$project->datedebut}}</td>
