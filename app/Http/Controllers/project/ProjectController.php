@@ -6,6 +6,7 @@ namespace App\Http\Controllers\project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Comment;
 
 class ProjectController extends Controller
 {
@@ -107,4 +108,20 @@ class ProjectController extends Controller
     {
         //
     }
+
+
+    public function comment(Request $request/* , project $project */){
+
+        $this->validate($request,[
+            'titre'=> 'required|min:5',
+            'contenu' => 'required|min:8'
+        ]);
+
+        Comment::create([
+            'titre'=> $request->titre,
+            'contenu' => $request->contenu
+        ]);
+
+        return redirect('liste');
+    } 
 }
