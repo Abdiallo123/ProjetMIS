@@ -3,7 +3,7 @@
 @section('content')
     
     <div>
-        <form class="container-fluid center-block" action="{{route('projects.store')}}" method="POST">
+        <form class="container-fluid center-block" action="{{route('store')}}" method="POST">
             {{ csrf_field() }}
             <div class="card">
                 <div class="card-header primary">
@@ -13,6 +13,7 @@
                 <div class="card-body">
                     <div class="form-group">
                         <input class="form-control form-control-lg" type="text" name="nom" required="" placeholder="Nom du projet" autocomplete="off">
+                        {{$errors->first('nom', ':message')}}
                     </div>
                     <div class="form-group">
                         <input class="form-control form-control-lg" type="text" name="description" required="" placeholder="Description" autocomplete="off">

@@ -26,4 +26,4 @@ Route::get('/template',function (){
 Route::get('/listeproject', 'project\ProjectController@index')->name('liste');
 Route::get('/addproject', 'project\ProjectController@create')->name('add');
 
-Route::post('/addproject', 'project\ProjectController@create')->name('add');
+Route::post('/addproject', 'project\ProjectController@store')->name('store');

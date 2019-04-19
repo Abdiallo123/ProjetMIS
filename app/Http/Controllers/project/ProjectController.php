@@ -40,6 +40,16 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'nom' => 'required',
+            'description' => 'required',
+            'date_debut' => 'required',
+            'date_fin' => 'required',
+            'client' => 'required',
+            'etat' => 'required',
+            'type' => 'required'
+        ]);
+
         Project::create([
             'nom' => $request->nom,
             'description' => $request->description,
