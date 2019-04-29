@@ -30,7 +30,7 @@ Route::post('/addproject', 'project\ProjectController@store')->name('store');
 Route::post('/addcomment', 'project\CommentController@store')->name('storec');
 Route::get('/projectdetail/{id}', 'project\ProjectController@show')->name('projecttask');
 Route::get('/createcomment', 'project\ProjectController@index')->name('afficheform');
-Route::post('/addcomment', 'project\CommentController@store')->name('storec');
+
 Route::get('/listecomment', 'project\CommentController@index')->name('list');
 
 Route::get('/listetask', 'Task\TaskController@index')->name('listet');
