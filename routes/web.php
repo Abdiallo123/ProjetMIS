@@ -23,4 +23,13 @@ Route::get('/template',function (){
     return view('base');
 });
 
-Route::get('/listeproject', 'project\ProjectController@index')->name('project');
+Route::get('/listeproject', 'project\ProjectController@index')->name('liste');
+Route::get('/addproject', 'project\ProjectController@create')->name('add');
+
+Route::get('/createcomment', 'project\ProjectController@index')->name('afficheform');
+Route::post('/addcomment', 'project\CommentController@store')->name('storec');
+Route::get('/listecomment', 'project\CommentController@index')->name('list');
+
+Route::get('/listetask', 'Task\TaskController@index')->name('listet');
+Route::get('/addtask', 'Task\TaskController@create')->name('addt');
+Route::post('/addtasks', 'Task\TaskController@store')->name('storet');

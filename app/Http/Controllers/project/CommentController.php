@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\project;
 
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Project;
+use App\Models\Comment;
 
 
-class ProjectController extends Controller
+
+
+
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +19,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
-       
-
-        return view('project.listproject', compact('projects'));
+        $comments = Comment::All();
+        return view('project.comment', compact('comments'));
     }
 
     /**
@@ -30,7 +30,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        
+        return view('project.listproject');
     }
 
     /**
@@ -41,36 +41,28 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'nom' => 'required',
-            'description' => 'required',
-            'date_debut' => 'required',
-            'date_fin' => 'required',
-            'client' => 'required',
-            'etat' => 'required',
-            'type' => 'required'
-        ]);
 
-        Project::create([
-            'nom' => $request->nom,
-            'description' => $request->description,
-            'date_debut' => $request->date_debut,
-            'date_fin' => $request->date_fin,
-            'client' => $request->client,
-            'etat' => $request->etat,
-            'type' => $request->type
-        ]);
-
-        return redirect()->route('liste');
+            $this->validate($request,[
+                'titre'=> 'required|min:5',
+                'contenu' => 'required|min:8'
+            ]);
+    
+            Comment::create([
+                'titre'=> $request->titre,
+                'contenu' => $request->contenu
+            ]);
+    
+            return redirect()->route('liste');;
+        
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\project  $project
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(project $project)
+    public function show($id)
     {
         
     }
@@ -78,10 +70,10 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\project  $project
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(project $project)
+    public function edit($id)
     {
         //
     }
@@ -90,10 +82,10 @@ class ProjectController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\project  $project
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, project $project)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -101,14 +93,11 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\project  $project
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(project $project)
+    public function destroy($id)
     {
         //
     }
-
-
-    
 }

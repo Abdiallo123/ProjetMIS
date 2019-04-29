@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\project;
-
+namespace App\Http\Controllers\Task;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Project;
-
-
-class ProjectController extends Controller
+use App\Models\Task;
+class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +14,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
-       
-
-        return view('project.listproject', compact('projects'));
+        $tasks = Task::all();
+        return view('tasks.listetask', compact('tasks'));
     }
 
     /**
@@ -30,7 +25,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        
+        return view('tasks.addtask');
     }
 
     /**
@@ -41,47 +36,41 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate($request, [
-            'nom' => 'required',
+            'nom' =>'required',
             'description' => 'required',
-            'date_debut' => 'required',
-            'date_fin' => 'required',
-            'client' => 'required',
-            'etat' => 'required',
-            'type' => 'required'
+            'etat' => 'required'
+            
         ]);
 
-        Project::create([
+        Task::create([
             'nom' => $request->nom,
             'description' => $request->description,
-            'date_debut' => $request->date_debut,
-            'date_fin' => $request->date_fin,
-            'client' => $request->client,
-            'etat' => $request->etat,
-            'type' => $request->type
+            'etat' => $request->etat
+           // 'id_project' => $request->NULL
         ]);
-
-        return redirect()->route('liste');
+        return redirect()->route('listet');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\project  $project
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(project $project)
+    public function show($id)
     {
-        
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\project  $project
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(project $project)
+    public function edit($id)
     {
         //
     }
@@ -90,10 +79,10 @@ class ProjectController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\project  $project
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, project $project)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -101,14 +90,11 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\project  $project
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(project $project)
+    public function destroy($id)
     {
         //
     }
-
-
-    
 }

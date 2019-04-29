@@ -3,7 +3,7 @@
 @section('content')
     
     <div>
-        <form class="container-fluid center-block">
+        <form class="container-fluid">
             <div class="card">
                 <div class="card-header primary">
                     <h3 class="mb-1">Add a new project form</h3>
