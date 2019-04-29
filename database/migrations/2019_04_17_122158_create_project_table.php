@@ -22,7 +22,11 @@ class CreateProjectTable extends Migration
             $table->string('client');
             $table->string('etat');
             $table->string('type');
+            $table->integer('id_user')->unsigned();
             $table->timestamps();
+        });
+        Schema::table('projects', function($table) {
+            $table->foreign('id_user')->references('id')->on('users');
         });
     }
 

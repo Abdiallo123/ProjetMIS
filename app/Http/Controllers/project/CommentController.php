@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Task;
+namespace App\Http\Controllers\project;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Task;
-class TaskController extends Controller
+use App\Models\Comment;
+
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all();
-        return view('tasks.listetask', compact('tasks'));
+        //
     }
 
     /**
@@ -25,7 +25,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        return view('tasks.addtask');
+        //
     }
 
     /**
@@ -36,21 +36,17 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-
-        $this->validate($request, [
-            'nom' =>'required',
-            'description' => 'required',
-            'etat' => 'required'
-            
+        $this->validate($request,[
+            'titre'=> 'required|min:5',
+            'contenu' => 'required|min:8'
         ]);
 
-        Task::create([
-            'nom' => $request->nom,
-            'description' => $request->description,
-            'etat' => $request->etat,
-            'id_project' => $request->NULL
+        Comment::create([
+            'titre'=> $request->titre,
+            'contenu' => $request->contenu
         ]);
-        return redirect()->route('listet');
+
+        return redirect()->route('liste');
     }
 
     /**
@@ -61,7 +57,7 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**

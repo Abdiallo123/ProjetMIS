@@ -1,45 +1,47 @@
 @extends('layouts.app')
+@extends('base')
 @section('content')
 
-    <div>
-    <table>
-        <thead>
-            <tr>
-                <th>nom</th>
-                <th>description</th>
-                <th>date debut</th>
-                <th>date fin</th>
-            </tr>
-        </thead>
-        <tbody>
-            
-                @if (count($projects)>0)
-                    @foreach ($projects as $project)
-                        <tr>
-                        <td>{{$project->nom}}</td>
-                        <td>{{$project->description}}</td>
-                        <td>{{$project->date_debut}}</td>
-                        <td>{{$project->date_fin}}</td> 
-                        </tr>
-                    @endforeach
+    <div>   
+        @if (count($projects)>0)
+            @foreach ($projects as $project)
+                <div class="card-group">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">{{$project->nom}}</h4>
+                            <div class="card-text">
+                                <p>{{$project->description}}</p>
+                                <p>{{$project->date_debut}}</p>
+                                <p>{{$project->date_fin}}</p> 
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+             @endforeach
                     
-                @endif
-                    
-           
-            
-        </tbody>
-    </table>
+        @endif
 
     </div>
-<form action="{{route('storec')}}" method="POST">
-    <div class="form-group">
-        <input type="text" name="titre" id="" class="form-control" placeholder="titre">
-        {{$errors->first('titre',':message')}}
-      </div>
-    <div class="form-group">
-      <input type="text" name="contenu" id="" class="form-control" placeholder="contenu">
-      {{$errors->first('contenu',':message')}}
+        
+    <div class="card  col-md-10">
+            
+            <div class="card-body text-primary">
+              <h5 class="card-title">Laisser un commentaire</h5>
+              <div class="card-text">
+                <form action="{{route('storec')}}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <input type="text" name="titre" id="" class="form-control col-sm-10" placeholder="titre">
+                        {{$errors->first('titre',':message')}}
+                      </div>
+                    <div class="form-group">
+                      <input type="text" name="contenu" id="" class="form-control col-sm-10" placeholder="contenu">
+                      {{$errors->first('contenu',':message')}}
+                    </div>
+                    <input type="submit" value="Commenter" class="btn btn-primary">
+                </form>
+              </div>
+            </div>
     </div>
-    <input type="submit" value="Commenter">
-</form>
 @endsection
+

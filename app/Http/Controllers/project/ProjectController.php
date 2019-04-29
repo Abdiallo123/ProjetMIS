@@ -6,7 +6,7 @@ namespace App\Http\Controllers\project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
-use App\Models\Comment;
+
 
 class ProjectController extends Controller
 {
@@ -70,9 +70,11 @@ class ProjectController extends Controller
      * @param  \App\project  $project
      * @return \Illuminate\Http\Response
      */
-    public function show(project $project)
+    public function show($id)
     {
-        
+        $projects = \App\Models\Project::find($id);
+      
+        return view('project.show')->with('project',$projects);
     }
 
     /**
@@ -108,20 +110,5 @@ class ProjectController extends Controller
     {
         //
     }
-
-
-    public function comment(Request $request/* , project $project */){
-
-        $this->validate($request,[
-            'titre'=> 'required|min:5',
-            'contenu' => 'required|min:8'
-        ]);
-
-        Comment::create([
-            'titre'=> $request->titre,
-            'contenu' => $request->contenu
-        ]);
-
-        return redirect('liste');
-    } 
+ 
 }

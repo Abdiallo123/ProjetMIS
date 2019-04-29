@@ -18,8 +18,12 @@ class CreateTaskTable extends Migration
             $table->string('nom');
             $table->string('description');
             $table->string('etat');
-            $table->integer('id_project');
+            $table->integer('id_project')->unsigned();
             $table->timestamps();
+        });
+
+        Schema::table('tasks', function($table) {
+            $table->foreign('id_project')->references('id')->on('projects');
         });
     }
 
