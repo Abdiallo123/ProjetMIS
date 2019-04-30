@@ -6,7 +6,10 @@ namespace App\Http\Controllers\project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
-
+use App\Models\Task;
+use App\Models\Comment;
+use App\User;
+use Auth;
 
 class ProjectController extends Controller
 {
@@ -72,9 +75,20 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        $projects = \App\Models\Project::find($id);
-      
-        return view('project.show')->with('project',$projects);
+        $projects = Project::find($id);
+        $tasks = Task::where('id_project', '=', $id)->get();
+        $current_user_id = User::
+        $comments = Comment::where('id_project', '=', $id)->where('id_user', '=',$current_user_id)->get();
+
+        return view('project.show')->with([
+            
+            'project'=> $projects,
+            'tasks'=> $tasks,
+            'comments'=>$comments
+         ]);
+
+        
+                  
     }
 
     /**
@@ -110,5 +124,9 @@ class ProjectController extends Controller
     {
         //
     }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> dec0dd3c36bd1a2cd6edefb96af7d3a891ee1d27
 }

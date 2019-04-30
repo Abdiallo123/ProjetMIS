@@ -16,6 +16,11 @@ class CommentController extends Controller
     public function index()
     {
         //
+<<<<<<< HEAD
+=======
+        $comments = Comment::All();
+        return view('project.comment', compact('comments'));
+>>>>>>> dec0dd3c36bd1a2cd6edefb96af7d3a891ee1d27
     }
 
     /**

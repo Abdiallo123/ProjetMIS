@@ -14,7 +14,11 @@
                                 <p>{{$project->date_debut}}</p>
                                 <p>{{$project->date_fin}}</p> 
                             </div>
+<<<<<<< HEAD
                         <a class="text-primary" href="{{route('project.show', $project)}}">Editer</a>
+=======
+                        <a href="{{route('projecttask',$project->id)}}">Editer</a>
+>>>>>>> dec0dd3c36bd1a2cd6edefb96af7d3a891ee1d27
                         </div>
                     </div>
                 </div> 
@@ -24,6 +28,7 @@
 
     </div>
         
+<<<<<<< HEAD
     <div class="card  col-md-10">
             
             <div class="card-body text-primary">
@@ -44,5 +49,8 @@
               </div>
             </div>
     </div>
+=======
+    
+>>>>>>> dec0dd3c36bd1a2cd6edefb96af7d3a891ee1d27
 @endsection
 
