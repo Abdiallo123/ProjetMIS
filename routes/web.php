@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'project\ProjectController@index');
 
 Auth::routes();
 
@@ -27,9 +25,15 @@ Route::get('/listeproject', 'project\ProjectController@index')->name('liste');
 Route::get('/addproject', 'project\ProjectController@create')->name('add');
 
 Route::post('/addproject', 'project\ProjectController@store')->name('store');
-Route::post('/addcomment', 'project\CommentController@store')->name('storec');
+Route::post('/addcomment/{project_id}', 'project\CommentController@store')->name('storec');
 Route::get('/projectdetail/{id}', 'project\ProjectController@show')->name('projecttask');
 Route::get('/createcomment', 'project\ProjectController@index')->name('afficheform');
+
+Route::get('editproject/{id}','project\ProjectController@edit')->name('editp');
+Route::post('updateproject/{id}', 'project\ProjectController@update')->name('updatep');
+Route::post('teste/{id}', function ($id) {
+    dd('$id');
+});
 
 Route::get('/listecomment', 'project\CommentController@index')->name('list');
 

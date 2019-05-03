@@ -3,11 +3,12 @@
 @section('content')
     
     <div>
-        <form class="container-fluid">
+    <form class="container-fluid" method="POST" action="{{route('store')}}">
+        {{ csrf_field() }}
             <div class="card">
                 <div class="card-header primary">
-                    <h3 class="mb-1">Add a new project form</h3>
-                    <p>Please enter the project informations.</p>
+                    <h3 class="mb-1">Ajouter un nouveau projet</h3>
+                    <p>Veuillez entrer les informations du projet</p>
                 </div>
                 <div class="card-body">
                     <div class="form-group">
@@ -17,31 +18,22 @@
                         <input class="form-control form-control-lg" type="text" name="description" required="" placeholder="Description" autocomplete="off">
                     </div>
                     <div class="form-group">
-                        <input class="form-control form-control-lg" id="pass1" type="date" required="" placeholder="Date debut" name="datedebut">
+                        <input class="form-control form-control-lg" id="pass1" type="date" required="" placeholder="Date debut" name="date_debut">
                     </div>
                     <div class="form-group">
-                        <input class="form-control form-control-lg" required="" placeholder="Date fin" type="date" name="datefin">
+                        <input class="form-control form-control-lg" required="" placeholder="Date fin" type="date" name="date_fin">
                     </div>
                     <div class="form-group">
                         <input class="form-control form-control-lg" type="text" name="client" required="" placeholder="Nom Client" autocomplete="off">
                     </div>
                     <div class="form-group">
-                    <label class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" name="radio-inline" checked="" class="custom-control-input"><span class="custom-control-label">En cour</span>
-                    </label>
-                    <label class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" name="radio-inline" class="custom-control-input"><span class="custom-control-label">En attente</span>
-                    </label>
-                    <label class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" name="radio-inline" class="custom-control-input"><span class="custom-control-label">Archivé</span>
-                    </label>
-                    <label class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" name="radio-inline" class="custom-control-input"><span class="custom-control-label">suspendu</span>
-                    </label>
-                    <label class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" name="radio-inline" class="custom-control-input"><span class="custom-control-label">Clôturé</span>
-                    </label>
-                </div>
+                        <label class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" name="type" checked="false" class="custom-control-input"><span class="custom-control-label">Entreprise</span>
+                        </label>
+                        <label class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" name="type" class="custom-control-input"><span class="custom-control-label">Pour un client</span>
+                        </label>
+                    </div>
                     <div class="form-group pt-2">
                         <button class="btn btn-block btn-primary" type="submit">Ajouter</button>
                     </div>

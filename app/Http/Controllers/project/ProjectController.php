@@ -50,17 +50,18 @@ class ProjectController extends Controller
             'date_debut' => 'required',
             'date_fin' => 'required',
             'client' => 'required',
-            'etat' => 'required',
+            //'etat' => 'required',
             'type' => 'required'
         ]);
-
+        $etat = 'Actif';
+            //dd('bella');
         Project::create([
             'nom' => $request->nom,
             'description' => $request->description,
             'date_debut' => $request->date_debut,
             'date_fin' => $request->date_fin,
             'client' => $request->client,
-            'etat' => $request->etat,
+            'etat' => $etat,
             'type' => $request->type
         ]);
 
@@ -77,8 +78,8 @@ class ProjectController extends Controller
     {
         $projects = Project::find($id);
         $tasks = Task::where('id_project', '=', $id)->get();
-        $current_user_id = User::
-        $comments = Comment::where('id_project', '=', $id)->where('id_user', '=',$current_user_id)->get();
+        $iduser = Auth::id();
+        $comments = Comment::where('id_project', '=', $id)->get();
 
         return view('project.show')->with([
             
@@ -97,9 +98,10 @@ class ProjectController extends Controller
      * @param  \App\project  $project
      * @return \Illuminate\Http\Response
      */
-    public function edit(project $project)
+    public function edit(project $project, $id)
     {
-        //
+        $projects = Project::find($id);
+        return view('project.edit', compact('projects'));
     }
 
     /**
@@ -109,9 +111,32 @@ class ProjectController extends Controller
      * @param  \App\project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, project $project)
+    public function update(Request $request, $id )
     {
-        //
+       
+
+         $this->validate($request, [
+            'nom' => 'required',
+            'description' => 'required',
+            'date_debut' => 'required',
+            'date_fin' => 'required',
+            'client' => 'required',
+            'etat' => 'required',
+            'type' => 'required'
+        ]);
+        
+        
+        Project::whereId($id)->update([
+            'nom' => $request->nom,
+            'description' => $request->description,
+            'date_debut' => $request->date_debut,
+            'date_fin' => $request->date_fin,
+            'client' => $request->client,
+            'etat' => $request->etat,
+            'type' => $request->type
+        ]);
+
+        return redirect()->route('projecttask',$id); 
     }
 
     /**
@@ -124,9 +149,4 @@ class ProjectController extends Controller
     {
         //
     }
-<<<<<<< HEAD
-
-=======
- 
->>>>>>> dec0dd3c36bd1a2cd6edefb96af7d3a891ee1d27
 }

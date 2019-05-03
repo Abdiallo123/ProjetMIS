@@ -5,6 +5,9 @@ namespace App\Http\Controllers\project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use App\Models\Project;
 
 class CommentController extends Controller
 {
@@ -16,11 +19,6 @@ class CommentController extends Controller
     public function index()
     {
         //
-<<<<<<< HEAD
-=======
-        $comments = Comment::All();
-        return view('project.comment', compact('comments'));
->>>>>>> dec0dd3c36bd1a2cd6edefb96af7d3a891ee1d27
     }
 
     /**
@@ -39,16 +37,20 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $project_id)
     {
         $this->validate($request,[
-            'titre'=> 'required|min:5',
             'contenu' => 'required|min:8'
         ]);
+        
+        $id = \Auth::id();
+        $project = Project::find($project_id);
 
         Comment::create([
-            'titre'=> $request->titre,
-            'contenu' => $request->contenu
+            'contenu' => $request->contenu,
+            'id_user' => $id,
+            'id_project'=> $project->id
+             
         ]);
 
         return redirect()->route('liste');
