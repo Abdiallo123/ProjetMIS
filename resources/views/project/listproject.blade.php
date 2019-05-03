@@ -8,11 +8,17 @@
                 <div class="card-group">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">{{$project->nom}}</h4>
+                            <h4 class="card-title font-weight-bold">{{$project->nom}}</h4>
                             <div class="card-text">
-                                <p>{{$project->description}}</p>
-                                <p>{{$project->date_debut}}</p>
-                                <p>{{$project->date_fin}}</p> 
+                                <blockquote class="blockquote">
+                                    <p class="md-0">{{$project->description}}</p>
+                                    <footer class="blockquote-footer text-right">
+                                            <p>Start: {{$project->date_debut}} End: {{$project->date_fin}}</p>
+                                           
+                                    </footer>
+                                </blockquote>
+                                
+                                 
                             </div>
                             <div class="row">
                                 <label for="">Opérations</label>
@@ -23,6 +29,7 @@
                             </div> 
                             
                               
+                        <a class="text-primary" href="{{route('projecttask', $project->id)}}">Editer</a>
                         </div>
                     </div>                   
                 </div> 

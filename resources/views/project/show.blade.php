@@ -35,12 +35,8 @@
             <div class="card-body text-primary">
               <h5 class="card-title">Laisser un commentaire</h5>
               <div class="card-text">
-                <form action="{{route('storec')}}" method="POST">
+                <form action="{{route('storec',$project->id)}}" method="POST">
                     @csrf
-                    <div class="form-group">
-                        <input type="text" name="titre" id="" class="form-control col-sm-10" placeholder="titre">
-                        {{$errors->first('titre',':message')}}
-                      </div>
                     <div class="form-group">
                       <input type="text" name="contenu" id="" class="form-control col-sm-10" placeholder="contenu">
                       {{$errors->first('contenu',':message')}}
