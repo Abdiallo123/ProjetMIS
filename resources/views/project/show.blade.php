@@ -10,19 +10,17 @@
             liste des tâches du projet
         </div>
         <div class="card-body">
-            <h4 class="card-title">tache</h4>
             <p class="card-text text-primary">
                 @if (count($tasks)>0)
                     
                         @foreach ($tasks as $task)
                         <div class="form-check">
                                 <label class="form-check-label">
-                                  <input type="checkbox" class="form-check-input" name="" id="" value="checkedValue" checked>
+                                  <input type="checkbox" class="form-check-input" name="" id="" value="checkedValue">
                                   <span>{{$task->nom}}</span>
                                 </label>
                               </div>
                             <p>{{$task->description}}</p>
-                            <p>{{$task->etat}}</p>
                         @endforeach
                     
                 @endif

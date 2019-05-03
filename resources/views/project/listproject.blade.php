@@ -14,9 +14,17 @@
                                 <p>{{$project->date_debut}}</p>
                                 <p>{{$project->date_fin}}</p> 
                             </div>
-                        <a href="{{route('projecttask',$project->id)}}">Editer</a>
+                            <div class="row">
+                                <label for="">Opérations</label>
+                                
+                                <div><a href="" class="btn btn-success">Editer</a> </div> 
+                                <div><a href="{{route('projecttask',$project->id)}}" class="btn btn-primary">Afficher</a></div>
+                                <div><a href="" class="btn btn-danger">Supprimer</a></div> 
+                            </div> 
+                            
+                              
                         </div>
-                    </div>
+                    </div>                   
                 </div> 
              @endforeach
                     

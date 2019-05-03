@@ -77,8 +77,8 @@ class ProjectController extends Controller
     {
         $projects = Project::find($id);
         $tasks = Task::where('id_project', '=', $id)->get();
-        $current_user_id = User::
-        $comments = Comment::where('id_project', '=', $id)->where('id_user', '=',$current_user_id)->get();
+        //$current_user_id = User::auth()->id;
+        $comments = Comment::where('id_project', '=', $id)->get();
 
         return view('project.show')->with([
             
