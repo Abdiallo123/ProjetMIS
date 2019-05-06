@@ -16,8 +16,9 @@
                         <input class="form-control form-control-lg" type="text" name="nom"  value="{{$projects->nom}}" placeholder="Nom du projet" autocomplete="off">
                     </div>
                     <div class="form-group">
-                        <input class="form-control form-control-lg" type="text" name="description" value="{{$projects->description}}" placeholder="Description" autocomplete="off">
-                    </div>
+                            <textarea class="form-control" name="description" id="" value="{{$projects->description}}" rows="3" placeholder="Description"></textarea>
+                            {{$errors->first('description',':message')}}
+                          </div>
                     <div class="form-group">
                         <input class="form-control form-control-lg" type="date" name="date_debut" value="{{$projects->date_debut}}" placeholder="Date debut">
                     </div>

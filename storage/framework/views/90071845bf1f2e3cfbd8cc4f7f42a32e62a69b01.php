@@ -1,10 +1,9 @@
-@extends('layouts.app')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     
     <div>
-    <form class="container-fluid" method="POST" action="{{route('store')}}">
-        {{ csrf_field() }}
+    <form class="container-fluid" method="POST" action="<?php echo e(route('store')); ?>">
+        <?php echo e(csrf_field()); ?>
+
             <div class="card">
                 <div class="card-header primary">
                     <h3 class="mb-1">Ajouter un nouveau projet</h3>
@@ -15,8 +14,7 @@
                         <input class="form-control form-control-lg" type="text" name="nom" required="" placeholder="Nom du projet" autocomplete="off">
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" name="description" id="" rows="3" placeholder="Description"></textarea>
-                            {{$errors->first('description',':message')}}
+                        <input class="form-control form-control-lg" type="text" name="description" required="" placeholder="Description" autocomplete="off">
                     </div>
                     <div class="form-group">
                         <input class="form-control form-control-lg" id="pass1" type="date" required="" placeholder="Date debut" name="date_debut">
@@ -43,4 +41,5 @@
         </form>
     </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>

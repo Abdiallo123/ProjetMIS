@@ -78,7 +78,6 @@ class ProjectController extends Controller
     {
         $projects = Project::find($id);
         $tasks = Task::where('id_project', '=', $id)->get();
-        //$current_user_id = User::auth()->id;
         $iduser = Auth::id();
         $comments = Comment::where('id_project', '=', $id)->get();
 
@@ -86,7 +85,8 @@ class ProjectController extends Controller
             
             'project'=> $projects,
             'tasks'=> $tasks,
-            'comments'=>$comments
+            'comments'=>$comments,
+            'users' =>$iduser
          ]);
 
         

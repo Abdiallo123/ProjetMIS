@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Task;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Task;
+use App\Models\Project;
 class TaskController extends Controller
 {
     /**
@@ -23,9 +24,10 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        return view('tasks.addtask');
+        $project = Project::find($id);
+        return view('tasks.addtask')->with('project', $project);
     }
 
     /**
@@ -34,23 +36,27 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $project_id)
     {
 
         $this->validate($request, [
             'nom' =>'required',
             'description' => 'required',
-            'etat' => 'required'
+           // 'etat' => 'required'
             
         ]);
+
+        $projects = Project::find($project_id);
+        
+        $etat = 'encours';
 
         Task::create([
             'nom' => $request->nom,
             'description' => $request->description,
-            'etat' => $request->etat,
-            'id_project' => $request->NULL
+            'etat' => $etat,
+            'id_project' => $projects->id
         ]);
-        return redirect()->route('listet');
+        return redirect()->route('projecttask',$project_id);
     }
 
     /**
@@ -84,7 +90,7 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**

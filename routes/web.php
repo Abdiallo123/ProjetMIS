@@ -31,12 +31,9 @@ Route::get('/createcomment', 'project\ProjectController@index')->name('affichefo
 
 Route::get('editproject/{id}','project\ProjectController@edit')->name('editp');
 Route::post('updateproject/{id}', 'project\ProjectController@update')->name('updatep');
-Route::post('teste/{id}', function ($id) {
-    dd('$id');
-});
 
 Route::get('/listecomment', 'project\CommentController@index')->name('list');
 
 Route::get('/listetask', 'Task\TaskController@index')->name('listet');
-Route::get('/addtask', 'Task\TaskController@create')->name('addt');
-Route::post('/addtasks', 'Task\TaskController@store')->name('storet');
+Route::get('/addtask/{id}', 'Task\TaskController@create')->name('addt');
+Route::post('/addtasks/{project_id}', 'Task\TaskController@store')->name('storet');

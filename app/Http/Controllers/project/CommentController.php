@@ -53,7 +53,7 @@ class CommentController extends Controller
              
         ]);
 
-        return redirect()->route('liste');
+        return redirect()->route('projecttask',$project_id);
     }
 
     /**

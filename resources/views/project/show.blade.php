@@ -11,14 +11,15 @@
         </div>
         <div class="card-body">
             <p class="card-text text-primary">
+                <a href="{{route('addt',$project->id)}}" class="btn btn-primary">Nouvelle tâche</a>
                 @if (count($tasks)>0)
                     
                         @foreach ($tasks as $task)
-                        <div class="form-check">
-                                <label class="form-check-label">
-                                  <input type="checkbox" class="form-check-input" name="" id="" value="checkedValue">
-                                  <span>{{$task->nom}}</span>
-                                </label>
+                          <div class="form-check">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" name="" id="" value="checkedValue">
+                                <span>{{$task->nom}}</span>
+                            </label>
                               </div>
                             <p>{{$task->description}}</p>
                         @endforeach
@@ -38,9 +39,9 @@
                 <form action="{{route('storec',$project->id)}}" method="POST">
                     @csrf
                     <div class="form-group">
-                      <input type="text" name="contenu" id="" class="form-control col-sm-10" placeholder="contenu">
-                      {{$errors->first('contenu',':message')}}
-                    </div>
+                        <textarea class="form-control" name="contenu" id="" rows="3" placeholder="contenu"></textarea>
+                        {{$errors->first('contenu',':message')}}
+                      </div>
                     <input type="submit" value="Commenter" class="btn btn-primary">
                 </form>
               </div>
