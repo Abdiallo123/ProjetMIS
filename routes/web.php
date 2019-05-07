@@ -11,7 +11,9 @@
 |
 */
 
-Route::get('/', 'project\ProjectController@index');
+Auth::routes();
+
+Route::get('/', 'HomeController@index');
 
 Auth::routes();
 

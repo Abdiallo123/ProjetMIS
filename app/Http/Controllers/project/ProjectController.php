@@ -127,6 +127,7 @@ class ProjectController extends Controller
         ]);
         
         
+        
         Project::whereId($id)->update([
             'nom' => $request->nom,
             'description' => $request->description,

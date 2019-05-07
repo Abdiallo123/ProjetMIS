@@ -14,7 +14,7 @@
                         <input class="form-control form-control-lg" type="text" name="nom"  value="<?php echo e($projects->nom); ?>" placeholder="Nom du projet" autocomplete="off">
                     </div>
                     <div class="form-group">
-                        <input class="form-control form-control-lg" type="text" name="description" value="<?php echo e($projects->description); ?>" placeholder="Description" autocomplete="off">
+                        <textarea class="form-control" name="description" id=""  rows="3" placeholder="Description"><?php echo e($projects->description); ?></textarea>
                     </div>
                     <div class="form-group">
                         <input class="form-control form-control-lg" type="date" name="date_debut" value="<?php echo e($projects->date_debut); ?>" placeholder="Date debut">
@@ -27,20 +27,18 @@
                     </div>
                     <div class="form-group">
                         <label class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" name="etat" checked="" class="custom-control-input"><span class="custom-control-label">Actif</span>
+                            <input type="radio" value="Actif" name="etat" checked="" class="custom-control-input"><span class="custom-control-label">Actif</span>
                         </label>
                         <label class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" name="etat" class="custom-control-input"><span class="custom-control-label">En attente</span>
+                            <input type="radio" value="En attente" name="etat" class="custom-control-input"><span class="custom-control-label">En attente</span>
                         </label>
                         <label class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" name="etat" class="custom-control-input"><span class="custom-control-label">Archivé</span>
+                            <input type="radio" value="Archiver" name="etat" class="custom-control-input"><span class="custom-control-label">Archivé</span>
                         </label>
                         <label class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" name="etat" class="custom-control-input"><span class="custom-control-label">suspendu</span>
+                            <input type="radio" value="Suspendu" name="etat" class="custom-control-input"><span class="custom-control-label">suspendu</span>
                         </label>
-                        <label class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" name="etat" class="custom-control-input"><span class="custom-control-label">Clôturé</span>
-                        </label>
+                        
                     </div>
                     <div class="form-group">
                         <label class="custom-control custom-radio custom-control-inline">
@@ -51,7 +49,7 @@
                         </label>
                     </div>
                     <div class="form-group pt-2">
-                        <button class="btn btn-block btn-primary" type="submit">Ajouter</button>
+                        <button class="btn btn-block btn-primary" type="submit">Modifier</button>
                     </div>
                     
             </div>

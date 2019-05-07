@@ -80,7 +80,8 @@
         <div class="dashboard-wrapper">
             <div class="container-fluid dashboard-content">
                 <div class="row">
-                    <div class="col-xl-9 col-lg-9 col-md-10 col-sm-12 col-10  center-block">
+                    <div class="col-xl-9 col-lg-9 col-md-10 col-sm-12 col-10  center-block" 
+                    style="margin-top: 50px;">
                         <main class="py-4">
                             @yield('content')
                         </main>
@@ -105,6 +106,7 @@
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
     <!-- end main wrapper -->

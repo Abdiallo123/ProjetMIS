@@ -14,7 +14,9 @@
                         <input class="form-control form-control-lg" type="text" name="nom" required="" placeholder="Nom du projet" autocomplete="off">
                     </div>
                     <div class="form-group">
-                        <input class="form-control form-control-lg" type="text" name="description" required="" placeholder="Description" autocomplete="off">
+                        <textarea class="form-control" name="description" id="" rows="3" placeholder="Description"></textarea>
+                            <?php echo e($errors->first('description',':message')); ?>
+
                     </div>
                     <div class="form-group">
                         <input class="form-control form-control-lg" id="pass1" type="date" required="" placeholder="Date debut" name="date_debut">
