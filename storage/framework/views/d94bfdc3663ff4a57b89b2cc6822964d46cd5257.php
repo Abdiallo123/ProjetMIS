@@ -22,7 +22,47 @@
     <link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo e(asset('vendor/bootstrap/css/bootstrap.min.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('libs/css/style.css')); ?>">
-    
+
+<link src="<?php echo e(asset('css/moncss.css')); ?>" rel="stylesheet">
+    <style>
+        #premierl{
+            background-color: transparent;
+           
+        }
+        #premierl ul{
+             list-style:none;
+             margin: 0px;
+             padding: 0px; 
+              
+        }
+
+        #premierl ul li {
+             
+             
+
+        }
+        #premierl ul li a{
+            font-family: Verdana sans-serif;
+             color: #3490dc;
+             font-size: 18px;
+             font-style: inherit;
+
+        }
+        #premierl ul li a:hover{
+             background-color: #3490dc;
+        }
+
+        #premierl ul ul{
+            margin-left: 50px;
+            margin-top: 0px;
+            display: none;   
+        }
+
+        #premierl ul li:hover > ul{
+            display: block;
+        }
+        
+    </style>
 </head>
 <body>
     <div class="dashboard-main-wrapper">
@@ -33,14 +73,24 @@
            <nav class="navbar navbar-expand-lg bg-white fixed-top">
                <a class="navbar-brand"  href="<?php echo e(url('/')); ?>"> <?php echo e(config('app.name', 'Gestion Projet')); ?></a>
                
-               <div class="dropdown">
+               <div class="dropdown" id="premierl">
                 <a class="dropdown-toggle text-primary" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   PROJET
                 </a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                  <button class="dropdown-item" type="button">Nouveau</button>
-                  <button class="dropdown-item" type="button">Tous les projets</button>
-                  <button class="dropdown-item" type="button">Filtre</button>
+                <div class="dropdown-menu" id="navdropdown" aria-labelledby="dropdownMenu2">
+                <ul>
+                    <li><a href="<?php echo e(route('add')); ?>" class="dropdown-item" type="button">Nouveau</a></li>
+                    <li><a href="<?php echo e(route('liste')); ?>" class="dropdown-item" type="button">Liste</a></li>
+                    <li><a  href="#" class="dropdown-item" type="button" >Filtre</a>
+                    <ul>
+                            <li><a href="<?php echo e(url('filtrer/Actif')); ?>" class="dropdown-item" type="button">Projets actifs</a></li>
+                            <li><a href="<?php echo e(url('filtrer/Archivé')); ?>" class="dropdown-item" type="button">Project archivés</a></li>
+                            <li><a href="<?php echo e(url('filtrer/En attente')); ?>" class="dropdown-item" type="button">Project en attente</a></li>
+                            <li><a href="<?php echo e(url('filtrer/Suspendu')); ?>" class="dropdown-item" type="button">Project suspendu</a></li>
+                 </ul>
+                </li>
+                
+                </ul>
                 </div>
               </div>
 

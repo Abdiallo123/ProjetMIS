@@ -23,6 +23,8 @@ Route::get('/template',function (){
     return view('base');
 });
 
+Route::get('/fitrerparetat/{etat}', 'project\ProjectController@filtre')->name('filtrer');
+
 Route::get('/listeproject', 'project\ProjectController@index')->name('liste');
 Route::get('/addproject', 'project\ProjectController@create')->name('add');
 

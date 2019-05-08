@@ -151,4 +151,15 @@ class ProjectController extends Controller
     {
         //
     }
+
+    public function filtre($etat){
+
+
+
+        $projet = Project::WhereEtat($etat)->get();
+
+        return view('project.listproject', compact('project'));
+
+        
+    }
 }

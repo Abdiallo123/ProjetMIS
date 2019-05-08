@@ -29,10 +29,10 @@
                     </div>
                     <div class="form-group">
                         <label class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" name="type" checked="false" class="custom-control-input"><span class="custom-control-label">Entreprise</span>
+                            <input type="radio" name="type" checked="false" class="custom-control-input" value="MIS"><span class="custom-control-label">Entreprise</span>
                         </label>
                         <label class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" name="type" class="custom-control-input"><span class="custom-control-label">Pour un client</span>
+                            <input type="radio" name="type" class="custom-control-input" value="Particulier"><span class="custom-control-label">Pour un client</span>
                         </label>
                     </div>
                     <div class="form-group pt-2">
