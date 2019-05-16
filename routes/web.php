@@ -12,10 +12,8 @@
 */
 
 Auth::routes();
-
 Route::get('/', 'HomeController@index');
 
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -27,11 +25,18 @@ Route::get('/fitrerparetat/{etat}', 'project\ProjectController@filtre')->name('f
 
 Route::get('/listeproject', 'project\ProjectController@index')->name('liste');
 Route::get('/addproject', 'project\ProjectController@create')->name('add');
+Route::get('/projetactif', 'project\ProjectController@actif')->name('actif');
+Route::get('/projetsuspendu', 'project\ProjectController@suspendu')->name('suspendu');
+Route::get('/projetenattente', 'project\ProjectController@enattente')->name('enattente');
 
 Route::post('/addproject', 'project\ProjectController@store')->name('store');
 Route::post('/addcomment/{project_id}', 'project\CommentController@store')->name('storec');
 Route::get('/projectdetail/{id}', 'project\ProjectController@show')->name('projecttask');
 Route::get('/createcomment', 'project\ProjectController@index')->name('afficheform');
+Route::get('/archiveproject/{id}', 'project\ProjectController@archiver')->name('archiver');
+Route::get('/archive', 'project\ProjectController@projetarchiver')->name('archive');
+Route::get('restoreproject/{id}', 'project\ProjectController@restaurer')->name('restorer');
+
 
 Route::get('editproject/{id}','project\ProjectController@edit')->name('editp');
 Route::post('updateproject/{id}', 'project\ProjectController@update')->name('updatep');

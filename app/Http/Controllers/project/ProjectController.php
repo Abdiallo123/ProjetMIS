@@ -5,19 +5,20 @@ namespace App\Http\Controllers\project;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+
 use App\Models\Project;
 use App\Models\Task;
 use App\Models\Comment;
+use App\Models\Archive;
+
 use App\User;
 use Auth;
 
 class ProjectController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    //Fonction d'affichage de la liste de tous les projets
+
     public function index()
     {
         $projects = Project::all();
@@ -26,22 +27,15 @@ class ProjectController extends Controller
         return view('project.listproject', compact('projects'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // Fonction d'affichage du formulaire d'ajout
+
     public function create()
     {
         return view('project.addproject');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    //fonction d'ajout d'un nouveau projet
+
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -50,11 +44,10 @@ class ProjectController extends Controller
             'date_debut' => 'required',
             'date_fin' => 'required',
             'client' => 'required',
-            //'etat' => 'required',
             'type' => 'required'
         ]);
         $etat = 'Actif';
-            //dd('bella');
+        
         Project::create([
             'nom' => $request->nom,
             'description' => $request->description,
@@ -68,12 +61,8 @@ class ProjectController extends Controller
         return redirect()->route('liste');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\project  $project
-     * @return \Illuminate\Http\Response
-     */
+    // Fonction de détails sur un projet
+    
     public function show($id)
     {
         $projects = Project::find($id);
@@ -93,30 +82,20 @@ class ProjectController extends Controller
                   
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\project  $project
-     * @return \Illuminate\Http\Response
-     */
+    //fonction d'affichage du formulaire d'édition
+    
     public function edit(project $project, $id)
     {
         $projects = Project::find($id);
         return view('project.edit', compact('projects'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\project  $project
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id )
-    {
-       
+    
+    // fonction de modification d'un projet
 
-         $this->validate($request, [
+    public function update(Request $request, $id )
+    {       
+            $this->validate($request, [
             'nom' => 'required',
             'description' => 'required',
             'date_debut' => 'required',
@@ -141,25 +120,95 @@ class ProjectController extends Controller
         return redirect()->route('projecttask',$id); 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\project  $project
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(project $project)
+    
+    public function destroy(project $project, $id)
     {
-        //
+        
     }
 
-    public function filtre($etat){
+    //Fonction d'archivage des projets:
 
+    public function archiver($id){
+         
+        $inserts = [];
+        $projects = Project::find($id);
 
+        $etat = 'Archivé';
+            $inserts[] = [
+                   'nom' => $projects->nom, 
+                   'description' => $projects->description , 
+                   'date_debut' => $projects->date_debut,
+                   'date_fin' => $projects->date_fin,
+                   'client' => $projects->client,
+                   'etat' => $etat,
+                   'type' => $projects->type
+                ]; 
 
-        $projet = Project::WhereEtat($etat)->get();
+        DB::table('archives')->insert($inserts);
 
-        return view('project.listproject', compact('project'));
+        Project::destroy($id);
 
+        return redirect()->route('liste');
         
+    }
+
+    //Liste des projets archivés
+
+    public function projetarchiver(){
+
+       $projects = Archive::All();
+        return view('project.archive', compact('projects'));
+    }
+
+    // fonction de restauration des données
+
+    public function restaurer($id){
+
+        $inserts = [];
+        $projects = Archive::find($id);
+
+        $etat = 'Actif';
+            $inserts[] = [
+                   'nom' => $projects->nom, 
+                   'description' => $projects->description , 
+                   'date_debut' => $projects->date_debut,
+                   'date_fin' => $projects->date_fin,
+                   'client' => $projects->client,
+                   'etat' => $etat,
+                   'type' => $projects->type
+                ]; 
+
+        DB::table('projects')->insert($inserts);
+
+        Archive::destroy($id);
+
+        return redirect()->route('liste');  
+    }
+
+    // fonction d'affichage des projets actifs
+
+    public function actif(){
+
+        $etat = 'Actif';
+        $projects = Project::whereEtat($etat)->get();
+
+        return view('project.listproject', compact('projects'));
+    }
+    //fonction d'affichage des projects suspendus
+
+    public function suspendu(){
+
+        $etat = 'Suspendu';
+        $projects = Project::whereEtat($etat)->get();
+
+        return view('project.listproject', compact('projects'));
+    }
+
+    public function enattente(){
+
+        $etat = "En attente";
+        $projects = Project::whereEtat($etat)->get();
+
+        return view('project.listproject', compact('projects'));
     }
 }

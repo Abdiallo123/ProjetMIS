@@ -25,6 +25,11 @@
 
 <link src="{{ asset('css/moncss.css')}}" rel="stylesheet">
     <style>
+
+        *{
+            font-family: Verdana, sans-serif;
+        }
+
         #premierl{
             background-color: transparent;
            
@@ -42,14 +47,15 @@
 
         }
         #premierl ul li a{
-            font-family: Verdana sans-serif;
+            font-family: Verdana, sans-serif;
              color: #3490dc;
-             font-size: 18px;
-             font-style: inherit;
+             font-size: 14px;
+             font-style: inherit;    
 
         }
         #premierl ul li a:hover{
              background-color: #3490dc;
+             color: #fff;
         }
 
         #premierl ul ul{
@@ -83,10 +89,10 @@
                     <li><a href="{{route('liste')}}" class="dropdown-item" type="button">Liste</a></li>
                     <li><a  href="#" class="dropdown-item" type="button" >Filtre</a>
                     <ul>
-                            <li><a href="{{url('filtrer/Actif')}}" class="dropdown-item" type="button">Projets actifs</a></li>
-                            <li><a href="{{url('filtrer/Archivé')}}" class="dropdown-item" type="button">Project archivés</a></li>
-                            <li><a href="{{url('filtrer/En attente')}}" class="dropdown-item" type="button">Project en attente</a></li>
-                            <li><a href="{{url('filtrer/Suspendu')}}" class="dropdown-item" type="button">Project suspendu</a></li>
+                            <li><a href="{{route('actif')}}" class="dropdown-item" type="button">Projets actifs</a></li>
+                            <li><a href="{{route('archive')}}" class="dropdown-item" type="button">Project archivés</a></li>
+                            <li><a href="{{route('enattente')}}" class="dropdown-item" type="button">Project en attente</a></li>
+                            <li><a href="{{route('suspendu')}}" class="dropdown-item" type="button">Project suspendu</a></li>
                  </ul>
                 </li>
                 

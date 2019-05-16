@@ -9,10 +9,8 @@
                     <div class="card">
                         <div class="card text-center">
                           <div class="card-header">
-                                <div class="row float-right">                                        
-                                    <div><a href="{{route('editp', $project->id)}}" class="btn btn-success">Editer</a> </div> 
-                                    <div><a href="{{route('projecttask',$project->id)}}" class="btn btn-primary">Afficher</a></div>
-                                    <div><a href="{{route('archiver', $project->id)}}" class="btn btn-danger">Archiver</a></div> 
+                                <div class="row float-right">                                         
+                                    <div><a href="{{route('restorer',$project->id)}}" class="btn btn-primary">Restaurer</a></div>
                                     <button class="btn float-right">
                                         Etat <span class="badge badge-primary">{{$project->etat}}</span>
                                     </button>
