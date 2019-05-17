@@ -47,7 +47,15 @@
               <?php if(count($comments)>0): ?>
               
               <?php $__currentLoopData = $comments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $comment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                  <p><?php echo e($comment->contenu); ?></p>
+                  
+                  <p>
+                    <?php echo e($comment->contenu); ?>
+
+                  </p>
+                  <p>
+                    <?php echo e($comment->user); ?>
+
+                  </p>
               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   
               <?php endif; ?>

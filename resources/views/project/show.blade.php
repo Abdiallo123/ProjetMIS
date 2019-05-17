@@ -48,7 +48,13 @@
               @if (count($comments)>0)
               
               @foreach ($comments as $comment)
-                  <p>{{$comment->contenu}}</p>
+                  
+                  <p>
+                    {{$comment->contenu}}
+                  </p>
+                  <p>
+                    {{$comment->user}}
+                  </p>
               @endforeach
                   
               @endif
