@@ -41,7 +41,7 @@
                     <div class="form-group">
                         <textarea class="form-control" name="contenu" id="" rows="3" placeholder="contenu"></textarea>
                         {{$errors->first('contenu',':message')}}
-                      </div>
+                    </div>
                     <input type="submit" value="Commenter" class="btn btn-primary">
                 </form>
               </div>
@@ -49,6 +49,7 @@
               
               @foreach ($comments as $comment)
                   <p>{{$comment->contenu}}</p>
+            {{-- <p>{{$comment->name[id_user]}}</p> --}}
               @endforeach
                   
               @endif

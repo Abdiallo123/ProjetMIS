@@ -36,13 +36,8 @@ class ProjectController extends Controller
         return view('project.addproject');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    
+    public function store(Request $request,$id)
     {
         $this->validate($request, [
             'nom' => 'required',
@@ -50,11 +45,13 @@ class ProjectController extends Controller
             'date_debut' => 'required',
             'date_fin' => 'required',
             'client' => 'required',
-            //'etat' => 'required',
             'type' => 'required'
         ]);
+
         $etat = 'Actif';
-            //dd('bella');
+        $user = \Auth::id();
+        
+            
         Project::create([
             'nom' => $request->nom,
             'description' => $request->description,
@@ -62,18 +59,14 @@ class ProjectController extends Controller
             'date_fin' => $request->date_fin,
             'client' => $request->client,
             'etat' => $etat,
-            'type' => $request->type
+            'type' => $request->type,
+            //'id_user' => $project->$user,
         ]);
 
         return redirect()->route('liste');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\project  $project
-     * @return \Illuminate\Http\Response
-     */
+   
     public function show($id)
     {
         $projects = Project::find($id);
@@ -93,25 +86,14 @@ class ProjectController extends Controller
                   
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\project  $project
-     * @return \Illuminate\Http\Response
-     */
+   
     public function edit(project $project, $id)
     {
         $projects = Project::find($id);
         return view('project.edit', compact('projects'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\project  $project
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, $id )
     {
        
@@ -141,12 +123,7 @@ class ProjectController extends Controller
         return redirect()->route('projecttask',$id); 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\project  $project
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy(project $project)
     {
         //
