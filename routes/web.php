@@ -25,12 +25,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/listeproject', 'project\ProjectController@index')->name('liste');
     Route::get('/projetactif', 'project\ProjectController@actif')->name('actif');
     Route::get('/fitrerparetat/{etat}', 'project\ProjectController@filtre')->name('filtrer');
-
+    Route::get('/projetsuspendu', 'project\ProjectController@suspendu')->name('suspendu');
+    Route::get('/projetenattente', 'project\ProjectController@enattente')->name('enattente');
 
     Route::get('/addproject', 'project\ProjectController@create')->name('add');
 
-    Route::get('/projetsuspendu', 'project\ProjectController@suspendu')->name('suspendu');
-    Route::get('/projetenattente', 'project\ProjectController@enattente')->name('enattente');
+    
 
     Route::post('/addproject', 'project\ProjectController@store')->name('store');
     Route::post('/addcomment/{project_id}', 'project\CommentController@store')->name('storec');

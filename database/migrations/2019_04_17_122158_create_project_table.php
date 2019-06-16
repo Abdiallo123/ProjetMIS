@@ -20,14 +20,15 @@ class CreateProjectTable extends Migration
             $table->date('date_debut');
             $table->date('date_fin');
             $table->string('client');
+            $table->string('contact');
             $table->string('etat');
             $table->string('type');
-            $table->integer('id_user')->unsigned();
+            $table->string('priorite');
+            $table->float('niveau_avancement');
+            $table->string('responsable');
             $table->timestamps();
         });
-        Schema::table('projects', function($table) {
-            $table->foreign('id_user')->references('id')->on('users');
-        });
+        
     }
 
     /**

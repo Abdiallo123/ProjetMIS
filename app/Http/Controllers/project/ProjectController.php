@@ -38,15 +38,22 @@ class ProjectController extends Controller
 
     public function store(Request $request)
     {
+        
         $this->validate($request, [
             'nom' => 'required',
             'description' => 'required',
             'date_debut' => 'required',
             'date_fin' => 'required',
             'client' => 'required',
-            'type' => 'required'
+            'contact' => 'required',
+            'responsable' => 'required',
+            'type' => 'required',
+            'priorite' => 'required'
+            
         ]);
+        dd('salut');
         $etat = 'Actif';
+        $niveau = 0;
         
         Project::create([
             'nom' => $request->nom,
@@ -54,8 +61,12 @@ class ProjectController extends Controller
             'date_debut' => $request->date_debut,
             'date_fin' => $request->date_fin,
             'client' => $request->client,
+            'contact' => $request->contact,
             'etat' => $etat,
-            'type' => $request->type
+            'type' => $request->type,
+            'priorite' => $request->priorite,
+            'niveau_avancement' => $niveau,
+            'responsable' => $request->responsable
         ]);
 
         return redirect()->route('liste');
@@ -66,9 +77,9 @@ class ProjectController extends Controller
     public function show($id)
     {
         $projects = Project::find($id);
-        $tasks = Task::where('id_project', '=', $id)->get();
+        $tasks = Task::where('project_id', '=', $id)->get();
         $iduser = Auth::id();
-        $comments = Comment::where('id_project', '=', $id)->get();
+        $comments = Comment::where('project_id', '=', $id)->get();
 
         return view('project.show')->with([
             
@@ -101,10 +112,12 @@ class ProjectController extends Controller
             'date_debut' => 'required',
             'date_fin' => 'required',
             'client' => 'required',
+            'contact' => 'required',
             'etat' => 'required',
-            'type' => 'required'
+            'type' => 'required',
+            'priorite' => 'required',
+            'responsable' => 'required'
         ]);
-        
         
         
         Project::whereId($id)->update([
@@ -113,8 +126,12 @@ class ProjectController extends Controller
             'date_debut' => $request->date_debut,
             'date_fin' => $request->date_fin,
             'client' => $request->client,
+            'contact' => $request->contact,
             'etat' => $request->etat,
-            'type' => $request->type
+            'type' => $request->type,
+            'priorite' => $request->priorite,
+            'niveau_avancement' => $request->niveau_avancement,
+            'responsable' => $request->responsable
         ]);
 
         return redirect()->route('projecttask',$id); 
@@ -140,8 +157,13 @@ class ProjectController extends Controller
                    'date_debut' => $projects->date_debut,
                    'date_fin' => $projects->date_fin,
                    'client' => $projects->client,
+                   'contact' => $projects->contact,
                    'etat' => $etat,
-                   'type' => $projects->type
+                   'type' => $projects->type,
+                   'priorite' => $projects->priorite,
+                   'niveau_avancement' => $projects->niveau_avancement,
+                   'responsable' => $projects->responsable
+
                 ]; 
 
         DB::table('archives')->insert($inserts);
@@ -174,8 +196,12 @@ class ProjectController extends Controller
                    'date_debut' => $projects->date_debut,
                    'date_fin' => $projects->date_fin,
                    'client' => $projects->client,
+                   'contact' => $projects->contact,
                    'etat' => $etat,
-                   'type' => $projects->type
+                   'type' => $projects->type,
+                   'priorite' => $projects->priorite,
+                   'niveau_avancement' => $projects->niveau_avancement,
+                   'responsable' => $projects->responsable
                 ]; 
 
         DB::table('projects')->insert($inserts);
@@ -190,7 +216,7 @@ class ProjectController extends Controller
     public function actif(){
 
         $etat = 'Actif';
-        $projects = Project::whereEtat($etat)->get();
+        $projects = Project::whereEtat($none)->get();
 
         return view('project.listproject', compact('projects'));
     }

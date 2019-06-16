@@ -22,6 +22,9 @@ class CreateArchivesTable extends Migration
             $table->string('client');
             $table->string('etat');
             $table->string('type');
+            $table->string('priorite');
+            $table->float('niveau_avancement');
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
 
