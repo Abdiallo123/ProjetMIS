@@ -31,29 +31,30 @@ class ProjectController extends Controller
 
     public function create()
     {
-        return view('project.addproject');
+        $users = User::all();
+        return view('project.addproject', compact('users'));
     }
 
     //fonction d'ajout d'un nouveau projet
 
     public function store(Request $request)
     {
-        
+        $etat = 'Actif';
+        $niveau = 0;
+       
+       
         $this->validate($request, [
             'nom' => 'required',
             'description' => 'required',
-            'date_debut' => 'required',
-            'date_fin' => 'required',
+            'date_debut' => 'required|date',
+            'date_fin' => 'required|date|after:date_debut',
             'client' => 'required',
             'contact' => 'required',
-            'responsable' => 'required',
             'type' => 'required',
-            'priorite' => 'required'
-            
+            'priorite' => 'required',
+            'responsable' => 'required'
         ]);
-        dd('salut');
-        $etat = 'Actif';
-        $niveau = 0;
+       
         
         Project::create([
             'nom' => $request->nom,
@@ -62,14 +63,20 @@ class ProjectController extends Controller
             'date_fin' => $request->date_fin,
             'client' => $request->client,
             'contact' => $request->contact,
+            'responsable' => $request->responsable,
             'etat' => $etat,
             'type' => $request->type,
             'priorite' => $request->priorite,
             'niveau_avancement' => $niveau,
-            'responsable' => $request->responsable
+            
         ]);
 
         return redirect()->route('liste');
+    }
+
+    //fonction d'affichage des utilisateurs
+    public function showuser(){
+        
     }
 
     // Fonction de détails sur un projet
@@ -98,7 +105,8 @@ class ProjectController extends Controller
     public function edit(project $project, $id)
     {
         $projects = Project::find($id);
-        return view('project.edit', compact('projects'));
+        $users = User::all();
+        return view('project.edit', compact('projects', 'users'));
     }
 
     
@@ -134,7 +142,7 @@ class ProjectController extends Controller
             'responsable' => $request->responsable
         ]);
 
-        return redirect()->route('projecttask',$id); 
+        return redirect()->route('liste'); 
     }
 
     
@@ -146,11 +154,12 @@ class ProjectController extends Controller
     //Fonction d'archivage des projets:
 
     public function archiver($id){
-         
+         $niveau = 0;
         $inserts = [];
         $projects = Project::find($id);
 
         $etat = 'Archivé';
+
             $inserts[] = [
                    'nom' => $projects->nom, 
                    'description' => $projects->description , 
@@ -163,11 +172,9 @@ class ProjectController extends Controller
                    'priorite' => $projects->priorite,
                    'niveau_avancement' => $projects->niveau_avancement,
                    'responsable' => $projects->responsable
-
                 ]; 
 
         DB::table('archives')->insert($inserts);
-
         Project::destroy($id);
 
         return redirect()->route('liste');
@@ -216,7 +223,7 @@ class ProjectController extends Controller
     public function actif(){
 
         $etat = 'Actif';
-        $projects = Project::whereEtat($none)->get();
+        $projects = Project::whereEtat($etat)->get();
 
         return view('project.listproject', compact('projects'));
     }

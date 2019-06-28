@@ -8,7 +8,7 @@ use App\Models\Project;
 
 class Comment extends Model
 {
-   protected $fillable = ['contenu'];
+   protected $fillable = ['contenu','user_id', 'project_id'];
 
    public function projects()
 	{

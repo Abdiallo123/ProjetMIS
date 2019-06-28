@@ -8,7 +8,7 @@ use App\User;
 
 class Task extends Model
 {
-    protected $fillable = ['nom','description','etat','date_debut','date_fin','pourcentage','responsable'];
+    protected $fillable = ['nom','description','etat','date_debut','date_fin','pourcentage','responsable','project_id'];
 
     public function projects()
 	{

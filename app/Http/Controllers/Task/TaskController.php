@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Task;
 use App\Models\Project;
+use App\User;
 class TaskController extends Controller
 {
     /**
@@ -27,7 +28,8 @@ class TaskController extends Controller
     public function create($id)
     {
         $project = Project::find($id);
-        return view('tasks.addtask')->with('project', $project);
+        $users = User::all();
+        return view('tasks.addtask')->with('project', $project)->with('users', $users);
     }
 
     /**
@@ -39,19 +41,19 @@ class TaskController extends Controller
     public function store(Request $request, $project_id)
     {
 
-        $this->validate($request, [
+        $projects = Project::find($project_id);    
+        $etat = 'encours';
+        
+        /* $this->validate($request, [
             'nom' =>'required',
             'description' => 'required',
+            'etat' => 'required',
             'date_debut' => 'required',
             'date_fin' => 'required',
             'pourcentage' => 'required',
-            'responsable' => 'required',
-        ]);
-
-        $projects = Project::find($project_id);
+            'responsable' => 'required'
+        ]); */ 
         
-        $etat = 'encours';
-
         Task::create([
             'nom' => $request->nom,
             'description' => $request->description,
@@ -94,9 +96,22 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $idt, $idp)
     {
+        $niveau = 0;
+        $pourcentage = Task::get('pourcentage')->whereId($idt);
+        //dd($pourcentage);
+        $niveau = $niveau + $pourcentage;
+
+        Project::whereId($idp)->update([
+            'niveau_avancement' =>$niveau
+        ]);
         
+        Task::whereId($idt)->update([
+            'etat' => $request->etat
+        ]);
+
+        return redirect()->back();
     }
 
     /**
