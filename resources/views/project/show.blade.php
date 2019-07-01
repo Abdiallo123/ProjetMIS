@@ -79,12 +79,12 @@
                                             <td class="center">{{$task->date_debut}}</td>
                                             <td class="right">{{$task->date_fin}}</td>
                                             <td class="right">{{$task->responsable}}</td>
-                                            <td class="right"><a href="" data-toggle="modal" data-target="#modifiertask" class="btn {{ ($task->etat)=='Terminée' ? 'btn-danger' : 'btn-warning'}}" style="width:91px;">{{$task->etat}}</a></td>                                            
+                                        <td class="right"><a href="" data-toggle="modal" data-target="#modifiertask{{$task->id}}" class="btn {{ ($task->etat)=='Terminée' ? 'btn-danger' : 'btn-warning'}}" style="width:91px;" >{{$task->etat}}</a></td>                                            
                                         </tr>  
-                                    @endforeach
+                                  
 
                                     <!-- Modal -->
-                                    <div id="modifiertask" class="modal fade" role="dialog">
+                                    <div id="modifiertask{{$task->id}}" class="modal fade" role="dialog">
                                     <div class="modal-dialog">
 
                                         <!-- Modal content-->
@@ -94,11 +94,11 @@
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>                                            
                                         </div>
                                         <div class="modal-body">
-                                        <form action="{{route('updateetat', ['idt' => $task->id, 'idp' => $project->id ])}}" method="POST">
-                                            @csrf
+                                            <form action="{{route('updateetat', ['idt' => $task->id, 'idp' => $project->id ])}}" method="POST">
+                                                @csrf
                                                 <select class="custom-select" name="etat" id="">                                   
-                                                        <option value="En cours">En cours</option>
-                                                        <option value="Terminée">Terminée</option>                                   
+                                                        <option value="En cours" name="etat" >En cours</option>
+                                                        <option value="Terminée" name="etat">Terminée</option>                                   
                                                 </select>
                                                 <div class="form-group">
                                                     <button class="btn  btn-primary float-right" style="margin-top:5px;" type="submit">Modifier</button>
@@ -112,7 +112,8 @@
 
                                     </div>
                                     </div>
-                                @endif                                      
+                                    @endforeach
+                                 @endif                                      
                             </tbody>
                         </table>
                     </div>

@@ -42,7 +42,7 @@ class TaskController extends Controller
     {
 
         $projects = Project::find($project_id);    
-        $etat = 'encours';
+        $etat = 'En cours';
         
         /* $this->validate($request, [
             'nom' =>'required',
@@ -99,17 +99,32 @@ class TaskController extends Controller
     public function update(Request $request, $idt, $idp)
     {
         $niveau = 0;
-        $pourcentage = Task::get('pourcentage')->whereId($idt);
-        //dd($pourcentage);
-        $niveau = $niveau + $pourcentage;
-
-        Project::whereId($idp)->update([
-            'niveau_avancement' =>$niveau
-        ]);
-        
-        Task::whereId($idt)->update([
+        $total = 0;
+        $pourcentage = Task::whereId($idt)->first()->pourcentage;
+    
+        Task::whereId($idt)
+        ->update([
             'etat' => $request->etat
         ]);
+               
+
+        $etats = Task::whereId($idt)->first()->etat;
+
+        if ($etats == 'Terminée') {
+
+            $total = $niveau + $pourcentage;
+             //dd('salut');
+            
+        }else{
+            $total = $niveau - $pourcentage; 
+            //dd('ca va');
+
+        }
+
+        Project::whereId($idp)->update([
+            'niveau_avancement' =>$total
+        ]);
+       
 
         return redirect()->back();
     }

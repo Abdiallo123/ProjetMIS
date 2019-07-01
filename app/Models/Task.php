@@ -9,7 +9,8 @@ use App\User;
 class Task extends Model
 {
     protected $fillable = ['nom','description','etat','date_debut','date_fin','pourcentage','responsable','project_id'];
-
+	protected $table = 'tasks';
+	
     public function projects()
 	{
 		return $this->belongsToMany(Project::class);

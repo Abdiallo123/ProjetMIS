@@ -77,12 +77,12 @@
                                             <td class="center"><?php echo e($task->date_debut); ?></td>
                                             <td class="right"><?php echo e($task->date_fin); ?></td>
                                             <td class="right"><?php echo e($task->responsable); ?></td>
-                                            <td class="right"><a href="" data-toggle="modal" data-target="#modifiertask" class="btn <?php echo e(($task->etat)=='Terminée' ? 'btn-danger' : 'btn-warning'); ?>" style="width:91px;"><?php echo e($task->etat); ?></a></td>                                            
+                                        <td class="right"><a href="" data-toggle="modal" data-target="#modifiertask<?php echo e($task->id); ?>" class="btn <?php echo e(($task->etat)=='Terminée' ? 'btn-danger' : 'btn-warning'); ?>" style="width:91px;" ><?php echo e($task->etat); ?></a></td>                                            
                                         </tr>  
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                  
 
                                     <!-- Modal -->
-                                    <div id="modifiertask" class="modal fade" role="dialog">
+                                    <div id="modifiertask<?php echo e($task->id); ?>" class="modal fade" role="dialog">
                                     <div class="modal-dialog">
 
                                         <!-- Modal content-->
@@ -92,11 +92,11 @@
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>                                            
                                         </div>
                                         <div class="modal-body">
-                                        <form action="<?php echo e(route('updateetat', ['idt' => $task->id, 'idp' => $project->id ])); ?>" method="POST">
-                                            <?php echo csrf_field(); ?>
+                                            <form action="<?php echo e(route('updateetat', ['idt' => $task->id, 'idp' => $project->id ])); ?>" method="POST">
+                                                <?php echo csrf_field(); ?>
                                                 <select class="custom-select" name="etat" id="">                                   
-                                                        <option value="En cours">En cours</option>
-                                                        <option value="Terminée">Terminée</option>                                   
+                                                        <option value="En cours" name="etat" >En cours</option>
+                                                        <option value="Terminée" name="etat">Terminée</option>                                   
                                                 </select>
                                                 <div class="form-group">
                                                     <button class="btn  btn-primary float-right" style="margin-top:5px;" type="submit">Modifier</button>
@@ -110,7 +110,8 @@
 
                                     </div>
                                     </div>
-                                <?php endif; ?>                                      
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                 <?php endif; ?>                                      
                             </tbody>
                         </table>
                     </div>

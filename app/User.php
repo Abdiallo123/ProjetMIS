@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Task;
 use App\Models\Comment;
 use App\Models\Project;
+use App\Notifications\dataAdded;
+
 
 class User extends Authenticatable
 {
@@ -18,6 +20,8 @@ class User extends Authenticatable
      *
      * @var array
      */
+    
+
     protected $fillable = [
         'name', 'email', 'password',
     ];
