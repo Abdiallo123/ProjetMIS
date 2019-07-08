@@ -49,7 +49,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/listetask', 'Task\TaskController@index')->name('listet');
     Route::get('/addtask/{id}', 'Task\TaskController@create')->name('addt');
     Route::post('/addtasks/{project_id}', 'Task\TaskController@store')->name('storet');
-    Route::post('/updateetat/{idt}/{idp}', 'Task\TaskController@update')->name('updateetat');
+    Route::post('/tasks/{idt}/projects/{idp}', 'Task\TaskController@update')->name('updateetat');
     
 });
 

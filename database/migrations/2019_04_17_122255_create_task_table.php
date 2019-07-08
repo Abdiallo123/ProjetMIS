@@ -23,11 +23,13 @@ class CreateTaskTable extends Migration
             $table->float('pourcentage');
             $table->string('responsable');
             $table->integer('project_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
 
         Schema::table('tasks', function($table) {
             $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

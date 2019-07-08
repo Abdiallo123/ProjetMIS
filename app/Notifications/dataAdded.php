@@ -10,8 +10,10 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+
 class dataAdded extends Notification
 {
+    
     use Queueable;
 
     /**
@@ -19,9 +21,11 @@ class dataAdded extends Notification
      *
      * @return void
      */
-    public function __construct()
+
+    public  $mail_data;
+    public function __construct($mail_data)
     {
-        //
+        $this->mail_data =  (object)$mail_data;
     }
 
     /**
@@ -44,9 +48,12 @@ class dataAdded extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->greeting($this->mail_data->greeting)
+                    ->from('abdiallo@misgroupe.com', 'Bella')
+                    ->subject($this->mail_data->mail_subject)
+                    ->line($this->mail_data->mail_message)
+                    ->action($this->mail_data->button_text, url($this->mail_data->message_link))
+                    ->line($this->mail_data->mail_footer);
     }
 
     /**

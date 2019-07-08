@@ -64,22 +64,22 @@
                     <div class="form-group">
                             <label for="type">Type de projet:</label>
                         <label class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" name="type" checked="false" class="custom-control-input"><span class="custom-control-label">Interne</span>
+                            <input type="radio" name="type" checked="false" class="custom-control-input" value="Interne"><span class="custom-control-label">Interne</span>
                         </label>
                         <label class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" name="type" class="custom-control-input"><span class="custom-control-label">Externe</span>
+                            <input type="radio" name="type" class="custom-control-input" value="Externe"><span class="custom-control-label">Externe</span>
                         </label>
                     </div>
                     <div class="form-group">
                             <label for="priorite">Priorité:</label>
                         <label class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" name="priorite" class="custom-control-input"><span class="custom-control-label">P1</span>
+                            <input type="radio" name="priorite" class="custom-control-input"  value="P1" ><span class="custom-control-label">P1</span>
                         </label>
                         <label class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" name="priorite" class="custom-control-input"><span class="custom-control-label">P2</span>
+                            <input type="radio" name="priorite" class="custom-control-input"  value="P2"><span class="custom-control-label">P2</span>
                         </label>
                         <label class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" name="priorite" class="custom-control-input"><span class="custom-control-label">P3</span>
+                            <input type="radio" name="priorite" class="custom-control-input"  value="P3"><span class="custom-control-label">P3</span>
                         </label>
                     </div>
                     <div class="form-group pt-2">
