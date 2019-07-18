@@ -159,57 +159,52 @@
                                             Menu
                                         </li>
                                         <li class="nav-item ">
-                                            <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Tableau de bord <span class="badge badge-success">6</span></a>
-                                            <div id="submenu-1" class="collapse submenu" style="">
+                                            <a class="nav-link active" href="#" ><i class="fa fa-fw fa-user-circle"></i>Tableau de bord</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="index.html" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-2" aria-controls="submenu-1-2">Utilisateur</a>
+                                            <div id="submenu-1-2" class="collapse submenu" style="">
                                                 <ul class="nav flex-column">
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="index.html" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-2" aria-controls="submenu-1-2">Utilisateur</a>
-                                                        <div id="submenu-1-2" class="collapse submenu" style="">
-                                                            <ul class="nav flex-column">
-                                                                <li class="nav-item">
-                                                                    <a class="nav-link" href="#">Users</a>
-                                                                </li>
-                                                                <li class="nav-item">
-                                                                    <a class="nav-link" href="#">Profile</a>
-                                                                </li>
-                                                        
-                                                            </ul>
-                                                        </div>
+                                                        <a class="nav-link" href="#">Users</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-1" aria-controls="submenu-1-1">Projets</a>
-                                                            <div id="submenu-1-1" class="collapse submenu" style="">
-                                                                <ul class="nav flex-column">
-                                                                   
-                                                                    <li class="nav-item">
-                                                                        <a class="nav-link" href="{{route('add')}}">Nouveau</a>
-                                                                    </li>
-                                                                    <li class="nav-item">
-                                                                        <a class="nav-link" href="{{route('liste')}}">Lister</a>
-                                                                    </li>
-                                                                    <li class="nav-item">
-                                                                        <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-3" aria-controls="submenu-1-1">Opérations</a>
-                                                                        <div id="submenu-1-3" class="collapse submenu" style="">
-                                                                            <ul class="nav flex-column">
-                                                                                <li class="nav-item">
-                                                                                    <a class="nav-link" href="{{route('actif')}}">Projet actifs</a>
-                                                                                </li>
-                                                                                <li class="nav-item">
-                                                                                    <a class="nav-link" href="{{route('enattente')}}">Projets en attente</a>
-                                                                                </li>
-                                                                                <li class="nav-item">
-                                                                                    <a class="nav-link" href="{{route('suspendu')}}">Projets suspendus</a>
-                                                                                </li>
-                                                                                <li class="nav-item">
-                                                                                    <a class="nav-link" href="{{route('suspendu')}}">Projets archivés</a>
-                                                                                </li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </li>
-            
-                                                                </ul>
-                                                            </div>
-                                                        </li>                                        
+                                                        <a class="nav-link" href="#">Profile</a>
+                                                    </li>
+                                            
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-1" aria-controls="submenu-1-1">Projets</a>
+                                            <div id="submenu-1-1" class="collapse submenu" style="">
+                                                <ul class="nav flex-column">
+                                                   
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="{{route('add')}}">Nouveau</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="{{route('liste')}}">Lister</a>
+                                                    </li> 
+                                                </ul>
+                                            </div>
+                                        </li> 
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-3" aria-controls="submenu-1-1">Opérations</a>
+                                            <div id="submenu-1-3" class="collapse submenu" style="">
+                                                <ul class="nav flex-column">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="{{route('actif')}}">Projet actifs</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="{{route('enattente')}}">Projets en attente</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="{{route('suspendu')}}">Projets suspendus</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="{{route('suspendu')}}">Projets archivés</a>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </li>
