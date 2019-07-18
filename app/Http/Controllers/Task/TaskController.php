@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Task;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Task;
 use App\Models\Project;
 use App\User;
+use Mail;
 class TaskController extends Controller
 {
     /**
@@ -125,6 +127,19 @@ class TaskController extends Controller
             'niveau_avancement' =>$total
         ]);
        
+        
+       
+
+        $users = User::select('email')->get()->pluck('email')->toArray(); 
+        $to_name = 'Bella';
+        $nom_destinataire = User::find('name');
+        $data = array('name'=>"Sam Jose", "body" => "Test mail");
+            
+        Mail::send('emails.email', $data, function($message) use ($nom_destinataire, $users) {
+            $message->to($users, $nom_destinataire)
+                    ->subject('Artisans Web Testing Mail');
+            $message->from('abdiallo@misgroupe.com','Artisans Web');
+        });
 
         return redirect()->back();
     }

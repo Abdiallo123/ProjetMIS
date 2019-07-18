@@ -48,10 +48,16 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/listecomment', 'project\CommentController@index')->name('list')->middleware('logs:16');
 
+
     Route::get('/listetask', 'Task\TaskController@index')->name('listet')->middleware('logs:17');
     Route::get('/addtask/{id}', 'Task\TaskController@create')->name('addt')->middleware('logs:18');
     Route::post('/addtasks/{project_id}', 'Task\TaskController@store')->name('storet')->middleware('logs:19');
     Route::post('/updateetat/{idt}/{idp}', 'Task\TaskController@update')->name('updateetat')->middleware('logs:20');
+    Route::get('/listetask', 'Task\TaskController@index')->name('listet');
+    Route::get('/addtask/{id}', 'Task\TaskController@create')->name('addt');
+    Route::post('/addtasks/{project_id}', 'Task\TaskController@store')->name('storet');
+    Route::post('/tasks/{idt}/projects/{idp}', 'Task\TaskController@update')->name('updateetat');
+
     
 });
 

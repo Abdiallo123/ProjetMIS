@@ -75,7 +75,7 @@
                                             <td class="center">{{$task->id}}</td>
                                             <td class="left strong">{{$task->nom}}</td>
                                             <td class="left">{{$task->description}}</td>
-                                            <td class="right">{{$task->pourcentage}}</td>
+                                            <td class="right text-center">{{$task->pourcentage}}</td>
                                             <td class="center">{{$task->date_debut}}</td>
                                             <td class="right">{{$task->date_fin}}</td>
                                             <td class="right">{{$task->responsable}}</td>

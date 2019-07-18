@@ -73,7 +73,7 @@
                                             <td class="center"><?php echo e($task->id); ?></td>
                                             <td class="left strong"><?php echo e($task->nom); ?></td>
                                             <td class="left"><?php echo e($task->description); ?></td>
-                                            <td class="right"><?php echo e($task->pourcentage); ?></td>
+                                            <td class="right text-center"><?php echo e($task->pourcentage); ?></td>
                                             <td class="center"><?php echo e($task->date_debut); ?></td>
                                             <td class="right"><?php echo e($task->date_fin); ?></td>
                                             <td class="right"><?php echo e($task->responsable); ?></td>

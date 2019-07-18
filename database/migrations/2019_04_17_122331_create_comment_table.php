@@ -17,13 +17,13 @@ class CreateCommentTable extends Migration
             $table->increments('id');
             $table->string('titre');
             $table->text('contenu');
-            $table->integer('id_user')->unsigned();
-            $table->integer('id_project')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->integer('project_id')->unsigned();
             $table->timestamps();
         });
         Schema::table('comments', function($table) {
-            $table->foreign('id_user')->references('id')->on('users');
-            $table->foreign('id_project')->references('id')->on('projects');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('project_id')->references('id')->on('projects');
         });
     }
 

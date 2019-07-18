@@ -9,7 +9,7 @@ use App\Models\Task;
 use App\Models\Comment;
 use App\Models\Project;
 use App\Notifications\dataAdded;
-
+use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable
 {

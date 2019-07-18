@@ -14,6 +14,7 @@ use App\Models\Archive;
 
 use App\User;
 use Auth;
+use Mail;
 
 class ProjectController extends Controller
 {
@@ -114,7 +115,8 @@ class ProjectController extends Controller
 
     public function update(Request $request, $id )
     {       
-            $this->validate($request, [
+        
+           /*  $this->validate($request, [
             'nom' => 'required',
             'description' => 'required',
             'date_debut' => 'required',
@@ -125,9 +127,10 @@ class ProjectController extends Controller
             'type' => 'required',
             'priorite' => 'required',
             'responsable' => 'required'
-        ]);
+        ]); */
+
         
-        
+        //dd('salut');
         Project::whereId($id)->update([
             'nom' => $request->nom,
             'description' => $request->description,
@@ -141,6 +144,17 @@ class ProjectController extends Controller
             'niveau_avancement' => $request->niveau_avancement,
             'responsable' => $request->responsable
         ]);
+
+        $users = User::select('email')->get()->pluck('email')->toArray(); 
+        $to_name = 'Bella';
+        $nom_destinataire = User::find('name');
+        $data = array('name'=>$nom_destinataire, "body" => "un de vos projets a été modifié");
+            
+        Mail::send('emails.email', $data, function($message) use ($nom_destinataire, $users) {
+            $message->to($users, $nom_destinataire)
+                    ->subject('Artisans Web Testing Mail');
+            $message->from('abdiallo@misgroupe.com','Artisans Web');
+        });
 
         return redirect()->route('liste'); 
     }
