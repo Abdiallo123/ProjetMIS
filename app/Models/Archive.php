@@ -6,5 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Archive extends Model
 {
-    protected $fillable = ['nom', 'description', 'date_debut', 'date_fin', 'client', 'contact', 'etat', 'type','priorite','responsable'];
+    protected $fillable = ['nom', 'description', 'date_debut', 'date_fin', 'client', 'contact', 'etat', 'type','priorite','responsable','user_id'];
 }
+

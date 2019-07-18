@@ -131,9 +131,9 @@
                                             <h5 class="mb-0 text-white nav-user-name">John Abraham </h5>
                                             <span class="status"></span><span class="ml-2">Available</span>
                                         </div>
-                                        <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>
-                                        <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
-                                        <a class="dropdown-item" href="#"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                                        <a class="dropdown-item" href="<?php echo e(url('/login')); ?>"><i class="fas fa-user mr-2"></i>Connexion</a>
+                                        <a class="dropdown-item" href="<?php echo e(url('/register')); ?>"><i class="fas fa-user mr-2"></i>Inscription</a>
+                                        <a class="dropdown-item" href="<?php echo e(url('/logout')); ?>"><i class="fas fa-power-off mr-2"></i>Déconnexion</a>
                                     </div>
                                 </li>
                             </ul>
@@ -203,7 +203,7 @@
                                                                                 <a class="nav-link" href="<?php echo e(route('suspendu')); ?>">Projets suspendus</a>
                                                                             </li>
                                                                             <li class="nav-item">
-                                                                                <a class="nav-link" href="<?php echo e(route('suspendu')); ?>">Projets archivés</a>
+                                                                                <a class="nav-link" href="<?php echo e(route('archive')); ?>">Projets archivés</a>
                                                                             </li>
                                                                         </ul>
                                                                     </div>

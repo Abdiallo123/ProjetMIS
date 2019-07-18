@@ -64,6 +64,7 @@ class ProjectController extends Controller
             'date_fin' => $request->date_fin,
             'client' => $request->client,
             'contact' => $request->contact,
+            'email' => $request->email,
             'responsable' => $request->responsable,
             'etat' => $etat,
             'type' => $request->type,
@@ -87,6 +88,7 @@ class ProjectController extends Controller
         $projects = Project::find($id);
         $tasks = Task::where('project_id', '=', $id)->get();
         $iduser = Auth::id();
+        $allusers = User::all();
         $comments = Comment::where('project_id', '=', $id)->get();
 
         return view('project.show')->with([
@@ -94,7 +96,8 @@ class ProjectController extends Controller
             'project'=> $projects,
             'tasks'=> $tasks,
             'comments'=>$comments,
-            'users' =>$iduser
+            'users' =>$iduser,
+            'allusers'=>$allusers
          ]);
 
         
@@ -129,6 +132,7 @@ class ProjectController extends Controller
             'responsable' => 'required'
         ]); */
 
+    
         
         //dd('salut');
         Project::whereId($id)->update([
@@ -138,10 +142,10 @@ class ProjectController extends Controller
             'date_fin' => $request->date_fin,
             'client' => $request->client,
             'contact' => $request->contact,
+            'email' => $request->email,
             'etat' => $request->etat,
             'type' => $request->type,
             'priorite' => $request->priorite,
-            'niveau_avancement' => $request->niveau_avancement,
             'responsable' => $request->responsable
         ]);
 
@@ -156,7 +160,7 @@ class ProjectController extends Controller
             $message->from('abdiallo@misgroupe.com','Artisans Web');
         });
 
-        return redirect()->route('liste'); 
+        return redirect()->route('projecttask', $id); 
     }
 
     
@@ -181,6 +185,7 @@ class ProjectController extends Controller
                    'date_fin' => $projects->date_fin,
                    'client' => $projects->client,
                    'contact' => $projects->contact,
+                   'email' => $projects->email,
                    'etat' => $etat,
                    'type' => $projects->type,
                    'priorite' => $projects->priorite,
@@ -189,6 +194,7 @@ class ProjectController extends Controller
                 ]; 
 
         DB::table('archives')->insert($inserts);
+       
         Project::destroy($id);
 
         return redirect()->route('liste');
@@ -218,6 +224,7 @@ class ProjectController extends Controller
                    'date_fin' => $projects->date_fin,
                    'client' => $projects->client,
                    'contact' => $projects->contact,
+                   'email' => $projects->email,
                    'etat' => $etat,
                    'type' => $projects->type,
                    'priorite' => $projects->priorite,

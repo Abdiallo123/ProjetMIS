@@ -44,7 +44,7 @@ class TaskController extends Controller
     {
 
         $projects = Project::find($project_id);    
-        $etat = 'En cours';
+        $etat = 'En attente';
         
         /* $this->validate($request, [
             'nom' =>'required',
@@ -115,21 +115,15 @@ class TaskController extends Controller
         if ($etats == 'Terminée') {
 
             $total = $niveau + $pourcentage;
-             //dd('salut');
-            
-        }else{
-            $total = $niveau - $pourcentage; 
-            //dd('ca va');
 
+            Project::whereId($idp)->update([
+                'niveau_avancement' =>$total
+            ]);
+            
         }
 
-        Project::whereId($idp)->update([
-            'niveau_avancement' =>$total
-        ]);
        
-        
        
-
         $users = User::select('email')->get()->pluck('email')->toArray(); 
         $to_name = 'Bella';
         $nom_destinataire = User::find('name');

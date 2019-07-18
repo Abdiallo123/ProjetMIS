@@ -22,6 +22,8 @@ Route::get('/template',function (){
 });
 
 Route::group(['middleware' => ['auth']], function () {
+    Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+   
     Route::get('/listeproject', 'project\ProjectController@index')->name('liste');
     Route::get('/projetactif', 'project\ProjectController@actif')->name('actif');
     Route::get('/fitrerparetat/{etat}', 'project\ProjectController@filtre')->name('filtrer');

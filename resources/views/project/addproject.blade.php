@@ -34,10 +34,12 @@
                                 {{$errors->first('date_fin',':message')}}
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="client" required="" placeholder="Nom du Client" autocomplete="off">
+                        </div>
                         <div class="row">
-                            <div class="form-group col-md-6">
-                                <input class="form-control" type="text" name="client" required="" placeholder="Nom du Client" autocomplete="off">
+                            <div class="form-group col-md-6">                               
+                                <input class="form-control" type="text" name="email" required="" placeholder="Email du client" autocomplete="off">
                             </div>
                             <div class="form-group col-md-6">
                                 <input class="form-control" type="text" name="contact" required="" placeholder="Contact du Client" autocomplete="off">

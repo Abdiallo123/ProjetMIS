@@ -5,7 +5,7 @@
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="page-header">
                     <div class="row">
-                        <h2 class="pageheader-title">Ajouter un nouveau projet</h2>
+                        <h2 class="pageheader-title">Ajouter un nouveau</h2>
                     </div>                        
                 </div>
             </div>
@@ -35,10 +35,12 @@
 
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="client" required="" placeholder="Nom du Client" autocomplete="off">
+                        </div>
                         <div class="row">
-                            <div class="form-group col-md-6">
-                                <input class="form-control" type="text" name="client" required="" placeholder="Nom du Client" autocomplete="off">
+                            <div class="form-group col-md-6">                               
+                                <input class="form-control" type="text" name="email" required="" placeholder="Email du client" autocomplete="off">
                             </div>
                             <div class="form-group col-md-6">
                                 <input class="form-control" type="text" name="contact" required="" placeholder="Contact du Client" autocomplete="off">

@@ -21,6 +21,7 @@ class CreateProjectTable extends Migration
             $table->date('date_fin');
             $table->string('client');
             $table->string('contact');
+            $table->string('email');
             $table->string('etat');
             $table->string('type');
             $table->string('priorite');

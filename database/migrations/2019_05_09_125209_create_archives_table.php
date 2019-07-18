@@ -20,11 +20,14 @@ class CreateArchivesTable extends Migration
             $table->date('date_debut');
             $table->date('date_fin');
             $table->string('client');
+            $table->string('contact');
+            $table->string('email');
             $table->string('etat');
             $table->string('type');
             $table->string('priorite');
             $table->float('niveau_avancement');
-            $table->integer('user_id')->unsigned();
+            $table->string('responsable');
+            $table->integer('user_id')->unsigned()->nullable();
             $table->timestamps();
         });
 
