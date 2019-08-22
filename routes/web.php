@@ -10,6 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Support\Facades\Hash;
+
 
 Auth::routes();
 Route::get('/', 'HomeController@index');
@@ -21,7 +23,18 @@ Route::get('/template',function (){
     return view('base');
 });
 
+Route::get('/reset', function () {
+    return view('auth.passwords.reset');
+});
+
+Route::resource('types', 'TypesController');
+Route::resource('topics', 'TopicsController');
+Route::post('/recherche', 'RechercheController@recherche')->name('recherche');
+
 Route::group(['middleware' => ['auth']], function () {
+
+    Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->middleware('logs:1');
+   
     Route::get('/listeproject', 'project\ProjectController@index')->name('liste');
     Route::get('/projetactif', 'project\ProjectController@actif')->name('actif');
     Route::get('/fitrerparetat/{etat}', 'project\ProjectController@filtre')->name('filtrer');
@@ -32,23 +45,28 @@ Route::group(['middleware' => ['auth']], function () {
 
     
 
-    Route::post('/addproject', 'project\ProjectController@store')->name('store');
-    Route::post('/addcomment/{project_id}', 'project\CommentController@store')->name('storec');
+    Route::post('/addproject', 'project\ProjectController@store')->name('store')->middleware('logs:2');
+    Route::post('/addcomment/{project_id}', 'project\CommentController@store')->name('storec')->middleware('logs:3');
     Route::get('/projectdetail/{id}', 'project\ProjectController@show')->name('projecttask');
-    Route::get('/createcomment', 'project\ProjectController@index')->name('afficheform');
-    Route::get('/archiveproject/{id}', 'project\ProjectController@archiver')->name('archiver');
-    Route::get('/archive', 'project\ProjectController@projetarchiver')->name('archive');
-    Route::get('restoreproject/{id}', 'project\ProjectController@restaurer')->name('restorer');
+    
+    Route::get('/archiveproject/{id}', 'project\ProjectController@archiver')->name('archiver')->middleware('logs:4');
+    Route::get('/archive', 'project\ProjectController@listarchive')->name('archive');
+    Route::get('restoreproject/{id}', 'project\ProjectController@restaurer')->name('restorer')->middleware('logs:5');
+    Route::get('/logs', 'LogsController@index')->name('logs');
+
+    
+    Route::post('updateproject/{id}', 'project\ProjectController@update')->name('updatep')->middleware('logs:6');
+
+  
 
 
-    Route::get('editproject/{id}','project\ProjectController@edit')->name('editp');
-    Route::post('updateproject/{id}', 'project\ProjectController@update')->name('updatep');
+    
+    Route::post('/addtasks/{project_id}', 'Task\TaskController@store')->name('storet')->middleware('logs:7');
+    Route::post('/updateetat/{idt}/{idp}', 'Task\TaskController@update')->name('updateetat')->middleware('logs:8');
+    
+    Route::post('/tasks/{idt}/projects/{idp}', 'Task\TaskController@update')->name('updateetat')->middleware('logs:9');
 
-    Route::get('/listecomment', 'project\CommentController@index')->name('list');
-
-    Route::get('/listetask', 'Task\TaskController@index')->name('listet');
-    Route::get('/addtask/{id}', 'Task\TaskController@create')->name('addt');
-    Route::post('/addtasks/{project_id}', 'Task\TaskController@store')->name('storet');
+    
 });
 
 

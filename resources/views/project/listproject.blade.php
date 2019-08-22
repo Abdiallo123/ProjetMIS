@@ -1,44 +1,56 @@
 @extends('layouts.app')
-@extends('base')
+
 @section('content')
 
-    <div>   
-        @if (count($projects)>0)
-            @foreach ($projects as $project)
-                <div class="card-group">
-                    <div class="encapsule-card card">
-                        <div class="card-body">
-                                <div class="row float-right">                                        
-                                        <div><a href="{{route('editp', $project->id)}}" class="btn btn-success">Editer</a> </div> 
-                                        <div><a href="{{route('projecttask',$project->id)}}" class="btn btn-primary">Afficher</a></div>
-                                        <div><a href="{{route('archiver', $project->id)}}" class="btn btn-danger">Archiver</a></div> 
-                                        <button class="btn float-right">
-                                            Etat <span class="badge badge-primary">{{$project->etat}}</span>
-                                        </button>
-                                    </div> 
-                            <h4 class="card-title font-weight-bold">{{$project->nom}}</h4>
-
-                            <div class="card-text">
-                                <blockquote class="blockquote">
-                                    <p class="md-0">{{$project->description}}</p>
-                                    <footer class="blockquote-footer text-right">
-                                            <p>Start: {{$project->date_debut}} End: {{$project->date_fin}}</p>                                           
-                                    </footer>
-                                </blockquote>
-                                <div class="float-right">
-                                    <label for="file">Niveau de progression:</label>
-                                    <progress id="file" max="100" value="70"> 70% </progress>
-                                </div>
-                            </div>
-                            
+    <div class="container-fluid dashboard-content ">
+            <!-- ============================================================== -->
+            <!-- pageheader  -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="page-header">
+                            <a href="{{route('add')}}" class="btn btn-primary float-right" style="margin-bottom: 5px;">Nouveau projet</a>                       
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end pageheader  -->
+            <!-- ============================================================== -->
+           @if (\Session::has('succes'))
+           <p class="text-success"> {{\Session::get('succes')}}</p>
+               
+           @endif
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div>
+                        <div>
+                            <div class="row">
+                                @if (count($projects)>0)
+                                    @foreach ($projects as $project)
+                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                                            <div class="card" style="min-height: 214px;max-height: 215px;">
+                                                <div class="card-header">
+                                                   <p class="font-weight-bold">{{$project->nom}} <span class="float-right">{{$project->niveau_avancement}}%</span></p>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="card-text">                                                                                                             
+                                                        <p>{{$project->description}}</p>
+                                                    </div>
+                                                    <a href="{{route('projecttask',$project->id)}}" class="btn btn-primary float-right">Détails</a>
+                                                </div>
+                                                <div class="card-footer d-flex text-muted">
+                                                       <p> Du {{$project->date_debut}} au {{$project->date_fin}}</p>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @endif
+                            </div>                                                        
                         </div>
-                    </div>                   
-                </div> 
-             @endforeach
-                    
-        @endif
-
-    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         
     
 @endsection

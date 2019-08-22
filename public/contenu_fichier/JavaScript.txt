@@ -1,0 +1,15 @@
+npm :  le package manager
+
+emmet : C'est un outil qui peut ameliorer notre productivité de developpeur web
+
+Raccourci : div#mon_id.panel>ul>li*3
+
+browser-sync : qui permet de refrechir la page en meme temps qu'on code.
+
+Pour installer le serveur : npm install -g browser-sync
+
+Pour lancer le serveur : browser-sync start --server --files="*.*"
+
+En JS les variables sont typées faiblement : c a d c'est pas au moment de la declaration qu'on peut indiquer le type c'est au moment de l'initialisation.
+
+Les typages forts c'est au moment de la declaration qu'on indique le type comme c#.

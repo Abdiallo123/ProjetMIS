@@ -8,6 +8,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Task;
 use App\Models\Comment;
 use App\Models\Project;
+use App\Models\Log;
+use App\Models\Topic;
+use App\Notifications\dataAdded;
+use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable
 {
@@ -18,6 +22,8 @@ class User extends Authenticatable
      *
      * @var array
      */
+    
+
     protected $fillable = [
         'name', 'email', 'password',
     ];
@@ -54,4 +60,15 @@ class User extends Authenticatable
     {
         return $this->hasMany(Project::class);
     }
+
+    public function logs()
+    {
+        return $this->hasMany(Log::class);
+    }
+
+    public function topics()
+    {
+        return $this->hasMany(Topic::class);
+    }
+
 }

@@ -31,12 +31,9 @@
           <div class="form-group col-md-6">
             <label for="responsable">Responsable</label>
             <select name="responsable" id="" class="custom-select">
-            {{--  @foreach ($users as $user)
-              <option value="">{{$user->name}}</option>
-             @endforeach  --}}
-             <option value="">Diallo</option>
-             <option value="">Mafouz</option>
-             <option value="">Harouna</option>
+                @foreach ($users as $user)
+                  <option value="{{$user->name}}">{{$user->name}}</option>
+                @endforeach 
             </select>
           </div>
         </div>   

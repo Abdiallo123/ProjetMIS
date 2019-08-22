@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Task;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Task;
 use App\Models\Project;
+use App\User;
+use Illuminate\Support\Facades\Auth;
+use Mail;
 class TaskController extends Controller
 {
     /**
@@ -27,7 +31,8 @@ class TaskController extends Controller
     public function create($id)
     {
         $project = Project::find($id);
-        return view('tasks.addtask')->with('project', $project);
+        $users = User::all();
+        return view('tasks.addtask')->with('project', $project)->with('users', $users);
     }
 
     /**
@@ -39,19 +44,20 @@ class TaskController extends Controller
     public function store(Request $request, $project_id)
     {
 
-        $this->validate($request, [
+        $projects = Project::find($project_id); 
+        $id = \Auth::id();   
+        $etat = 'En attente';
+        
+        /* $this->validate($request, [
             'nom' =>'required',
             'description' => 'required',
+            'etat' => 'required',
             'date_debut' => 'required',
             'date_fin' => 'required',
             'pourcentage' => 'required',
-            'responsable' => 'required',
-        ]);
-
-        $projects = Project::find($project_id);
+            'responsable' => 'required'
+        ]); */ 
         
-        $etat = 'encours';
-
         Task::create([
             'nom' => $request->nom,
             'description' => $request->description,
@@ -60,7 +66,8 @@ class TaskController extends Controller
             'date_fin' => $request->date_fin,
             'pourcentage' => $request->pourcentage,
             'responsable' => $request->responsable,
-            'project_id' => $projects->id
+            'project_id' => $projects->id,
+            'user_id' => $id
         ]);
         return redirect()->route('projecttask',$project_id);
     }
@@ -94,9 +101,44 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $idt, $idp)
     {
+        $niveau = Project::whereId($idp)->first()->niveau_avancement;
+        $total = 0;
+        $pourcentage = Task::whereId($idt)->first()->pourcentage;
         
+        Task::whereId($idt)
+        ->update([
+            'etat' => $request->etat
+        ]);
+               
+
+        $etats = Task::whereId($idt)->first()->etat;
+
+        if ($etats == 'Terminée') {
+
+            $total = $niveau + $pourcentage;
+
+            Project::whereId($idp)->update([
+                'niveau_avancement' =>$total
+            ]);
+            
+        }
+
+       
+       
+        $users = User::select('email')->get()->pluck('email')->toArray(); 
+        $to_name = 'Bella';
+        $nom_destinataire = User::find('name');
+        $data = array('name'=>"Sam Jose", "body" => "Test mail");
+            
+        Mail::send('emails.email', $data, function($message) use ($nom_destinataire, $users) {
+            $message->to($users, $nom_destinataire)
+                    ->subject('Artisans Web Testing Mail');
+            $message->from('abdiallo@misgroupe.com','Artisans Web');
+        });
+
+        return redirect()->back();
     }
 
     /**
