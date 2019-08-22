@@ -2,30 +2,29 @@
 
 @section('content')
     
-    <div>
+    <div class="card">
     <form class="container-fluid"  action="{{route('updatep', $projects->id)}}" method="POST">
         @csrf
         
-            <div class="card">
-                <div class="card-header primary">
-                    <h3 class="mb-1">Modifier</h3>
-                    <p>Please enter the project informations.</p>
-                </div>
+            <div>
+               
                 <div class="card-body">
+                        <h4 class="card-title">Formulaire de modification d'un projet</h4>
+                    <div class="card-text">
                     <div class="form-group">
-                        <input class="form-control form-control-lg" type="text" name="nom"  value="{{$projects->nom}}" placeholder="Nom du projet" autocomplete="off">
+                        <input class="form-control" type="text" name="nom"  value="{{$projects->nom}}" placeholder="Nom du projet" autocomplete="off">
                     </div>
                     <div class="form-group">
                         <textarea class="form-control" name="description" id=""  rows="3" placeholder="Description">{{$projects->description}}</textarea>
                     </div>
                     <div class="form-group">
-                        <input class="form-control form-control-lg" type="date" name="date_debut" value="{{$projects->date_debut}}" placeholder="Date debut">
+                        <input class="form-control" type="date" name="date_debut" value="{{$projects->date_debut}}" placeholder="Date debut">
                     </div>
                     <div class="form-group">
-                        <input class="form-control form-control-lg" value="{{$projects->date_fin}}" name="date_fin" placeholder="Date fin" type="date" >
+                        <input class="form-control" value="{{$projects->date_fin}}" name="date_fin" placeholder="Date fin" type="date" >
                     </div>
                     <div class="form-group">
-                        <input class="form-control form-control-lg" type="text" name="client" value="{{$projects->client}}" placeholder="Nom Client" autocomplete="off">
+                        <input class="form-control" type="text" name="client" value="{{$projects->client}}" placeholder="Nom Client" autocomplete="off">
                     </div>
                     <div class="form-group">
                         <label class="custom-control custom-radio custom-control-inline">
@@ -53,7 +52,7 @@
                     <div class="form-group pt-2">
                         <button class="btn btn-block btn-primary" type="submit">Modifier</button>
                     </div>
-                    
+                </div>    
             </div>
         </form>
     </div>

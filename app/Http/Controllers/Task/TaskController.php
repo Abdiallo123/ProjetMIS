@@ -42,8 +42,10 @@ class TaskController extends Controller
         $this->validate($request, [
             'nom' =>'required',
             'description' => 'required',
-           // 'etat' => 'required'
-            
+            'date_debut' => 'required',
+            'date_fin' => 'required',
+            'pourcentage' => 'required',
+            'responsable' => 'required',
         ]);
 
         $projects = Project::find($project_id);
@@ -54,7 +56,11 @@ class TaskController extends Controller
             'nom' => $request->nom,
             'description' => $request->description,
             'etat' => $etat,
-            'id_project' => $projects->id
+            'date_debut' => $request->date_debut,
+            'date_fin' => $request->date_fin,
+            'pourcentage' => $request->pourcentage,
+            'responsable' => $request->responsable,
+            'project_id' => $projects->id
         ]);
         return redirect()->route('projecttask',$project_id);
     }
@@ -78,7 +84,7 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
