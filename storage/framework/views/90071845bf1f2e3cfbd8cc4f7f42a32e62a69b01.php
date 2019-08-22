@@ -10,6 +10,9 @@
                 </div>
             </div>
         </div>
+        <?php if(\Session::has('succes')): ?>
+           <p class="text-success"> <?php echo e(\Session::get('succes')); ?></p>
+         <?php endif; ?>
     <form class="container-fluid float-center" method="POST" action="<?php echo e(route('store')); ?>">
         <?php echo e(csrf_field()); ?>
 

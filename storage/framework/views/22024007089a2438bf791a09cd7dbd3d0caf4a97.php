@@ -319,21 +319,24 @@
                                         <?php echo e($errors->first('contenu',':message')); ?>
 
                                         </div>
-                                    <input type="submit" value="Commenter" class="btn btn-primary float-right">
+                                    <input type="submit" value="Commenter" class="btn btn-primary float-right" style="margin-top:-4px"><br>
                                 </form>
                                 </div>
+                                <hr>
                                 <?php if(count($comments)>0): ?>
                                 
                                 <?php $__currentLoopData = $comments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $comment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                       
-                                    <p style="font-size:15px">
-                                        <small class="float-left text-primary">                        
-                                            <?php echo e($comment->user->name); ?>
+                                    <div style="margin-top:10px;">
+                                        <p style="font-size:15px; margin-top:10px;">
+                                            <small class="float-left text-primary">                        
+                                                <?php echo e($comment->user->name); ?>
 
-                                        </small><br>
-                                        <?php echo e($comment->contenu); ?>
+                                            </small><br>
+                                            <?php echo e($comment->contenu); ?>
 
-                                    </p>
+                                        </p>    
+                                    </div>   
+                                   
                                     
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     

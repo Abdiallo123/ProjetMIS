@@ -1,9 +1,7 @@
 <div class="col-sm-6">                                            
         <h3 class="text-primary mb-1">Opérations</h3>
                                                     
-       <div class="row"> 
-           
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModifprojectModal{{$project->id}}"> Editer</button>
+       <div class="row"> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModifprojectModal{{$project->id}}"> Editer</button>
             
             <!-- Modal  de modification d'un projet-->
             <div class="modal fade" id="ModifprojectModal{{$project->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -130,6 +128,7 @@
 
 
 
+<div class="row"><a href="{{route('archiver', $project->id)}}" class="btn btn-primary" style="width:91px; margin-top:5px;">Archiver</a></div> 
 
 
 

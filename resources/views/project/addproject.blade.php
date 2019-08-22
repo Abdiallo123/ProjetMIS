@@ -12,6 +12,9 @@
                 </div>
             </div>
         </div>
+        @if(\Session::has('succes'))
+           <p class="text-success"> {{\Session::get('succes')}}</p>
+         @endif
     <form class="container-fluid float-center" method="POST" action="{{route('store')}}">
         {{ csrf_field() }}
             <div class="card">

@@ -27,6 +27,7 @@ class CreateProjectTable extends Migration
             $table->string('priorite');
             $table->float('niveau_avancement');
             $table->string('responsable');
+            $table->boolean('status');
             $table->timestamps();
         });
         

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\Models\Comment;
-use App\Models\Tasks;
+use App\Models\Task;
 
 class Project extends Model
 {

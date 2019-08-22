@@ -22,9 +22,12 @@ class ProjectController extends Controller
 
     public function index()
     {
-        $projects = Project::all();
-       
-
+        $projects = Project::where([
+            ['status', '!=', 1],
+            ['etat', '!=', 'Archivé'],                   
+        ])->get();
+            
+        
         return view('project.listproject', compact('projects'));
     }
 
@@ -73,7 +76,7 @@ class ProjectController extends Controller
             
         ]);
 
-        return redirect()->route('liste');
+        return back()->with('succes','projet ajouté avec succès');
     }
 
     //fonction d'affichage des utilisateurs
@@ -160,7 +163,7 @@ class ProjectController extends Controller
             $message->from('abdiallo@misgroupe.com','Artisans Web');
         });
 
-        return redirect()->route('projecttask', $id); 
+        return back()->with('success', 'Modification réussie'); 
     }
 
     
@@ -172,71 +175,30 @@ class ProjectController extends Controller
     //Fonction d'archivage des projets:
 
     public function archiver($id){
-         $niveau = 0;
-        $inserts = [];
-        $projects = Project::find($id);
-
+        $status = 1;
         $etat = 'Archivé';
-
-            $inserts[] = [
-                   'nom' => $projects->nom, 
-                   'description' => $projects->description , 
-                   'date_debut' => $projects->date_debut,
-                   'date_fin' => $projects->date_fin,
-                   'client' => $projects->client,
-                   'contact' => $projects->contact,
-                   'email' => $projects->email,
-                   'etat' => $etat,
-                   'type' => $projects->type,
-                   'priorite' => $projects->priorite,
-                   'niveau_avancement' => $projects->niveau_avancement,
-                   'responsable' => $projects->responsable
-                ]; 
-
-        DB::table('archives')->insert($inserts);
-       
-        Project::destroy($id);
-
+        Project::whereId($id)->update([
+            'status'=> $status,
+            'etat' => $etat,
+        ]);
         return redirect()->route('liste');
-        
     }
 
-    //Liste des projets archivés
-
-    public function projetarchiver(){
-
-       $projects = Archive::All();
-        return view('project.archive', compact('projects'));
-    }
+    
 
     // fonction de restauration des données
 
     public function restaurer($id){
+        $status = 0;
+        $etat = 'En attente';
+        
+            Project::whereId($id)->update([
+                'status'=> $status,
+                'etat' => $etat,
+            ]);
 
-        $inserts = [];
-        $projects = Archive::find($id);
-
-        $etat = 'Actif';
-            $inserts[] = [
-                   'nom' => $projects->nom, 
-                   'description' => $projects->description , 
-                   'date_debut' => $projects->date_debut,
-                   'date_fin' => $projects->date_fin,
-                   'client' => $projects->client,
-                   'contact' => $projects->contact,
-                   'email' => $projects->email,
-                   'etat' => $etat,
-                   'type' => $projects->type,
-                   'priorite' => $projects->priorite,
-                   'niveau_avancement' => $projects->niveau_avancement,
-                   'responsable' => $projects->responsable
-                ]; 
-
-        DB::table('projects')->insert($inserts);
-
-        Archive::destroy($id);
-
-        return redirect()->route('liste');  
+            return redirect()->route('liste');
+              
     }
 
     // fonction d'affichage des projets actifs
@@ -264,5 +226,13 @@ class ProjectController extends Controller
         $projects = Project::whereEtat($etat)->get();
 
         return view('project.listproject', compact('projects'));
+    }
+
+     //Liste des projets archivés
+
+    public function listarchive(){
+        $etat = 'Archivé';
+        $projects = Project::whereEtat($etat)->get();
+        return view('project.archive', compact('projects'));
     }
 }

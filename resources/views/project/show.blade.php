@@ -319,19 +319,22 @@
                                         <textarea class="form-control" name="contenu" id="" rows="3" placeholder="contenu"></textarea>
                                         {{$errors->first('contenu',':message')}}
                                         </div>
-                                    <input type="submit" value="Commenter" class="btn btn-primary float-right">
+                                    <input type="submit" value="Commenter" class="btn btn-primary float-right" style="margin-top:-4px"><br>
                                 </form>
                                 </div>
+                                <hr>
                                 @if (count($comments)>0)
                                 
                                 @foreach ($comments as $comment)
-                                       
-                                    <p style="font-size:15px">
-                                        <small class="float-left text-primary">                        
-                                            {{$comment->user->name}}
-                                        </small><br>
-                                        {{$comment->contenu}}
-                                    </p>
+                                    <div style="margin-top:10px;">
+                                        <p style="font-size:15px; margin-top:10px;">
+                                            <small class="float-left text-primary">                        
+                                                {{$comment->user->name}}
+                                            </small><br>
+                                            {{$comment->contenu}}
+                                        </p>    
+                                    </div>   
+                                   
                                     
                                 @endforeach
                                     

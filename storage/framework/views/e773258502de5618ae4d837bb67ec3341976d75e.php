@@ -14,15 +14,19 @@
             <!-- ============================================================== -->
             <!-- end pageheader  -->
             <!-- ============================================================== -->
+           <?php if(\Session::has('succes')): ?>
+           <p class="text-success"> <?php echo e(\Session::get('succes')); ?></p>
+               
+           <?php endif; ?>
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="card">
-                        <div class="card-body">
+                    <div>
+                        <div>
                             <div class="row">
                                 <?php if(count($projects)>0): ?>
                                     <?php $__currentLoopData = $projects; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $project): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-                                            <div class="card">
+                                            <div class="card" style="min-height: 214px;max-height: 215px;">
                                                 <div class="card-header">
                                                    <p class="font-weight-bold"><?php echo e($project->nom); ?> <span class="float-right"><?php echo e($project->niveau_avancement); ?>%</span></p>
                                                 </div>

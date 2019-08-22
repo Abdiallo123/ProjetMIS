@@ -16,15 +16,19 @@
             <!-- ============================================================== -->
             <!-- end pageheader  -->
             <!-- ============================================================== -->
+           @if (\Session::has('succes'))
+           <p class="text-success"> {{\Session::get('succes')}}</p>
+               
+           @endif
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="card">
-                        <div class="card-body">
+                    <div>
+                        <div>
                             <div class="row">
                                 @if (count($projects)>0)
                                     @foreach ($projects as $project)
                                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-                                            <div class="card">
+                                            <div class="card" style="min-height: 214px;max-height: 215px;">
                                                 <div class="card-header">
                                                    <p class="font-weight-bold">{{$project->nom}} <span class="float-right">{{$project->niveau_avancement}}%</span></p>
                                                 </div>

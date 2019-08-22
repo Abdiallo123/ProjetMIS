@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Task;
 use App\Models\Project;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Mail;
 class TaskController extends Controller
 {
@@ -43,7 +44,8 @@ class TaskController extends Controller
     public function store(Request $request, $project_id)
     {
 
-        $projects = Project::find($project_id);    
+        $projects = Project::find($project_id); 
+        $id = \Auth::id();   
         $etat = 'En attente';
         
         /* $this->validate($request, [
@@ -64,7 +66,8 @@ class TaskController extends Controller
             'date_fin' => $request->date_fin,
             'pourcentage' => $request->pourcentage,
             'responsable' => $request->responsable,
-            'project_id' => $projects->id
+            'project_id' => $projects->id,
+            'user_id' => $id
         ]);
         return redirect()->route('projecttask',$project_id);
     }
@@ -100,10 +103,10 @@ class TaskController extends Controller
      */
     public function update(Request $request, $idt, $idp)
     {
-        $niveau = 0;
+        $niveau = Project::whereId($idp)->first()->niveau_avancement;
         $total = 0;
         $pourcentage = Task::whereId($idt)->first()->pourcentage;
-    
+        
         Task::whereId($idt)
         ->update([
             'etat' => $request->etat

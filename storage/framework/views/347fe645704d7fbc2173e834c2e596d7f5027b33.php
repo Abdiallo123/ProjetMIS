@@ -7,10 +7,7 @@
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="page-header">
-                        <div class="row">
-                            <h2 class="pageheader-title">Liste des projets </h2>
-                            <a href="<?php echo e(route('add')); ?>" class="btn btn-primary float-right">Nouveau projet</a>
-                        </div>                        
+                            
                     </div>
                 </div>
             </div>
@@ -42,9 +39,13 @@
                                             </div>
                                         </div>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    <?php else: ?>
+                                        <?php echo e('Aucun projet nest archivé'); ?>
+
                                 <?php endif; ?>
                             </div>                                                        
                         </div>
+                        
                     </div>
                 </div>
             </div>

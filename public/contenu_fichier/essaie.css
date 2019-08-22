@@ -1,0 +1,25 @@
+header{
+	text-align: center;
+	border: 5px solid black;
+	width: 680px;
+	margin: 0 auto;
+}
+
+.menu_gauche{
+	border: 5px solid black;
+	padding-top: 25em;
+	width: 300px;
+
+}
+
+footer{
+	text-align: center;
+	border: 5px solid black;
+	width: 680px;
+	margin: 0 auto;
+}
+
+.center{
+	
+	
+}
