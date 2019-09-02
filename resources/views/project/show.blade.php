@@ -345,6 +345,42 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
+
+
+   
+<<<<<<< HEAD
+    <div class="card  col-md-10">
+            
+            <div class="card-body text-primary">
+              <h5 class="card-title">Laisser un commentaire</h5>
+              <div class="card-text">
+                <form action="{{route('storec',$project->id)}}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <textarea class="form-control" name="contenu" id="" rows="3" placeholder="contenu"></textarea>
+                        {{$errors->first('contenu',':message')}}
+                    </div>
+                    <input type="submit" value="Commenter" class="btn btn-primary">
+                </form>
+              </div>
+              @if (count($comments)>0)
+              
+              @foreach ($comments as $comment)
+                  <p>{{$comment->contenu}}</p>
+            {{-- <p>{{$comment->name[id_user]}}</p> --}}
+              @endforeach
+                  
+              @endif
+            </div>
+    </div>
+=======
+    
+>>>>>>> 47dab2173e78b124616b586469e0ab9c1bc70aba
+
+@endsection
+=======
 </div>
         
 @endsection
+>>>>>>> eb312757c98f5381f7dd73f85318d2ed041ad535
