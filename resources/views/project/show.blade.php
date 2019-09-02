@@ -65,7 +65,7 @@
                                                                                 <div class="card-body">
                                                                                     <div class="card-text">
                                                                                         <div class="form-group">
-                                                                                            <input class="form-control" type="text" name="nom"  value="{{$project->nom}}" placeholder="Nom du projet" autocomplete="off">
+                                                                                            <input class="formcontrol" type="text" name="nom"  value="{{$project->nom}}" placeholder="Nom du projet" autocomplete="off">
                                                                                         </div>
                                                                                     
                                                                                         <div class="form-group">
@@ -176,7 +176,7 @@
                     <button class="btn btn-primary float-right" data-toggle="modal" style="margin-bottom:5px;" data-target="#ModaladdTask">Nouvelle tâche</button>
 
 <!-- Modal d'Ajout d'une nouvelle tache -->
-                            <div class="modal fade" id="ModaladdTask" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="ModaladdTask" tabindex="-1" role="dialog" aria-                 labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
