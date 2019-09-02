@@ -67,10 +67,6 @@ class ProjectController extends Controller
         $etat = 'Actif';
         $user = \Auth::id();
         
-            
-
-           
-        ]);
        
         
 
