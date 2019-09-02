@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Topic;
 
 class Type extends Model
 {
@@ -12,7 +11,7 @@ class Type extends Model
 
     public function topics()
 	{
-		return $this->hasMany(Topic::class);
+		return $this->hasMany('App\Topic');
 	}
 }
 

@@ -1,12 +1,12 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
-@section('container')
-
-	<div class="container col-md-8 col-md-offset-2 col-xs-12">
+@section('content')
+<div class="row justify-content-center">
+	<div class="container  col-md-8 col-md-offset-2 col-xs-12">
 		
 			<h1>Créer un topic</h1>
 
-			<form action=" {{route('topics.store')}} " method="POST" 
+			<form action=" {{route('traitement')}} " method="POST" 
 			enctype="multipart/form-data">
 
 				{{csrf_field()}}
@@ -61,17 +61,18 @@
 
 
 				
-				<div class="form-group" style="margin-bottom: -3%;">
-					<input type="submit" name="Valider" value="Valider" class="btn btn-primary">
+				<div class="form-group" style="margin-bottom: -4%;">
+					<input type="submit" name="Valider" value="Valider &raquo;" class="btn btn-primary btn-block">
 				</div>
 
-
+{{-- 
 				<div style="text-align: right; margin-bottom: -4%;">
 		              <button type="reset" class="btn btn-primary" name="annuler">Cancel</button>
-		            </div>
+		         </div> --}}
 				
 			</form>
 
+	</div>
 	</div>
 	<script type="text/javascript">
 		const type = document.querySelector('#type');

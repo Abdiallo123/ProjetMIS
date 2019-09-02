@@ -9,7 +9,10 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-   
+   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/app.css">
+
 
     <!-- Fonts -->
     <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}">
@@ -60,10 +63,30 @@
             color: #3490dc;
         }
         
+         .lien{
+
+    text-align: left;
+    color: #006621;
+  }
+  h1{
+    font-size: 1.5vw;
+  }
+  .titre{
+    text-align:  left;  
+  }
+ /* .motCle{
+    text-align:  left;
+  }*/
+  .fichier{
+    text-align:  left;
+     color: #006621;
+  }
     </style>
 </head>
 <body>
         <div class="dashboard-main-wrapper">
+
+        
                 <!-- ============================================================== -->
                 <!-- navbar -->
                 <!-- ============================================================== -->
@@ -198,7 +221,23 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{route('logs')}}">Historiques</a>
                                         </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-5" aria-controls="submenu-1-5">Database</a>
+                                            <div id="submenu-1-5" class="collapse submenu" style="">
+                                                <ul class="nav flex-column">
+                                                   <li class="nav-item">
+                                                        <a class="nav-link" href="{{route('index')}}">Recherche</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="{{route('formulaire')}}">Nouvelle resource</a>
+                                                    </li>
+                                                    
+                                                </ul>
+                                            </div>
+                                        </li>
                                     </ul>
+
                                 </div>
                             </nav>
                         </div>
@@ -264,6 +303,6 @@
     <script src="{{asset('assets/vendor/charts/c3charts/d3-5.4.0.min.js')}}"></script>
     <script src="{{asset('assets/vendor/charts/c3charts/C3chartjs.js')}}"></script>
     <script src="{{asset('assets/libs/js/dashboard-ecommerce.js')}}"></script>
-
+    <script src="/js/main.js"></script>
 </body>
 </html>

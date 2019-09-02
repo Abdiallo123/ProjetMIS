@@ -40,12 +40,14 @@ class ProjectController extends Controller
     }
 
 
+
     
     
 
     //fonction d'ajout d'un nouveau projet
 
     public function store(Request $request)
+
 
     {
         $etat = 'Actif';
@@ -60,6 +62,8 @@ class ProjectController extends Controller
             'client' => 'required',
             'contact' => 'required',
             'type' => 'required',
+            'type' => 'required',
+            'contact' => 'required',
             'priorite' => 'required',
             'responsable' => 'required'
         ]);
@@ -67,10 +71,11 @@ class ProjectController extends Controller
         $etat = 'Actif';
         $user = \Auth::id();
         
-       
-        
 
-        Project::create([
+            
+        
+       
+                Project::create([
             'nom' => $request->nom,
             'description' => $request->description,
             'date_debut' => $request->date_debut,
@@ -81,10 +86,13 @@ class ProjectController extends Controller
             'responsable' => $request->responsable,
             'etat' => $etat,
             'type' => $request->type,
+
             'priorite' => $request->priorite,
             'niveau_avancement' => $niveau,
 
-            'responsable' => $request->responsable
+            'responsable' => $request->responsable,
+
+            //'id_user' => $project->$user,
         ]);
 
         return back()->with('succes','projet ajouté avec succès');
@@ -95,9 +103,8 @@ class ProjectController extends Controller
         
     }
 
-    // Fonction de détails sur un projet
-    
 
+    // Fonction de détails sur un projet
     public function show($id)
     {
         $projects = Project::find($id);
@@ -119,9 +126,8 @@ class ProjectController extends Controller
                   
     }
 
-    //fonction d'affichage du formulaire d'édition
-    
 
+    //fonction d'affichage du formulaire d'édition
     public function edit(project $project, $id)
     {
         $projects = Project::find($id);
@@ -129,9 +135,6 @@ class ProjectController extends Controller
         return view('project.edit', compact('projects', 'users'));
     }
 
-    
-
-   
 
     public function update(Request $request, $id )
     {       
@@ -181,8 +184,9 @@ class ProjectController extends Controller
 
     
 
-    public function destroy(project $project)
 
+  
+    public function destroy(project $project)
     {
         
     }

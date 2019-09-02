@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Topic;
+use App\Topic;
 use Illuminate\Http\Request;
 
 class RechercheController extends Controller
@@ -11,7 +11,10 @@ class RechercheController extends Controller
     {
     	$topics = Topic::where('mot_cle', 'like', '%' . $request->mot_cle . '%')->get();
 
-    	
-		return view('topics.recherche', compact('topics'));
+		return response()->json([
+		    'topics' => $topics
+		]);
     }
+
+    
 }

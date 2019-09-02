@@ -27,9 +27,7 @@ Route::get('/reset', function () {
     return view('auth.passwords.reset');
 });
 
-Route::resource('types', 'TypesController');
-Route::resource('topics', 'TopicsController');
-Route::post('/recherche', 'RechercheController@recherche')->name('recherche');
+
 
 Route::group(['middleware' => ['auth']], function () {
 
@@ -65,6 +63,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/updateetat/{idt}/{idp}', 'Task\TaskController@update')->name('updateetat')->middleware('logs:8');
     
     Route::post('/tasks/{idt}/projects/{idp}', 'Task\TaskController@update')->name('updateetat')->middleware('logs:9');
+
+    Route::get('topics', 'TopicsController@index')->name('index');
+    Route::get('topicsFormulaire', 'TopicsController@formulaire')->name('formulaire');
+Route::post('topics', 'TopicsController@traitement')->name('traitement');
+
+
+Route::post('/recherche', 'RechercheController@recherche')->name('recherche');
 
     
 });
