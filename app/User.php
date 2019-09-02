@@ -66,9 +66,6 @@ class User extends Authenticatable
         return $this->hasMany(Log::class);
     }
 
-    public function topics()
-    {
-        return $this->hasMany(Topic::class);
-    }
+    
 
 }

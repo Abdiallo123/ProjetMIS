@@ -39,14 +39,8 @@ class ProjectController extends Controller
         return view('project.addproject', compact('users'));
     }
 
-<<<<<<< HEAD
     
     public function store(Request $request,$id)
-=======
-    //fonction d'ajout d'un nouveau projet
-
-    public function store(Request $request)
->>>>>>> 47dab2173e78b124616b586469e0ab9c1bc70aba
     {
         $etat = 'Actif';
         $niveau = 0;
@@ -58,23 +52,21 @@ class ProjectController extends Controller
             'date_debut' => 'required|date',
             'date_fin' => 'required|date|after:date_debut',
             'client' => 'required',
-<<<<<<< HEAD
-            'type' => 'required'
+            'type' => 'required',
+            'contact' => 'required',
+    
+            'priorite' => 'required',
+            'responsable' => 'required'
         ]);
 
         $etat = 'Actif';
         $user = \Auth::id();
         
             
-=======
-            'contact' => 'required',
-            'type' => 'required',
-            'priorite' => 'required',
-            'responsable' => 'required'
-        ]);
+            
+        
        
         
->>>>>>> 47dab2173e78b124616b586469e0ab9c1bc70aba
         Project::create([
             'nom' => $request->nom,
             'description' => $request->description,
@@ -86,17 +78,13 @@ class ProjectController extends Controller
             'responsable' => $request->responsable,
             'etat' => $etat,
             'type' => $request->type,
-<<<<<<< HEAD
+
             //'id_user' => $project->$user,
-=======
+
             'priorite' => $request->priorite,
             'niveau_avancement' => $niveau,
-<<<<<<< HEAD
             'responsable' => $request->responsable
->>>>>>> 47dab2173e78b124616b586469e0ab9c1bc70aba
-=======
-            
->>>>>>> eb312757c98f5381f7dd73f85318d2ed041ad535
+
         ]);
 
         return back()->with('succes','projet ajouté avec succès');
@@ -107,12 +95,7 @@ class ProjectController extends Controller
         
     }
 
-<<<<<<< HEAD
    
-=======
-    // Fonction de détails sur un projet
-    
->>>>>>> 47dab2173e78b124616b586469e0ab9c1bc70aba
     public function show($id)
     {
         $projects = Project::find($id);
@@ -134,12 +117,7 @@ class ProjectController extends Controller
                   
     }
 
-<<<<<<< HEAD
    
-=======
-    //fonction d'affichage du formulaire d'édition
-    
->>>>>>> 47dab2173e78b124616b586469e0ab9c1bc70aba
     public function edit(project $project, $id)
     {
         $projects = Project::find($id);
@@ -148,18 +126,12 @@ class ProjectController extends Controller
     }
 
     
-<<<<<<< HEAD
-    public function update(Request $request, $id )
-    {
-       
-=======
-    // fonction de modification d'un projet
->>>>>>> 47dab2173e78b124616b586469e0ab9c1bc70aba
+    
 
     public function update(Request $request, $id )
     {       
         
-           /*  $this->validate($request, [
+            $this->validate($request, [
             'nom' => 'required',
             'description' => 'required',
             'date_debut' => 'required',
@@ -170,7 +142,7 @@ class ProjectController extends Controller
             'type' => 'required',
             'priorite' => 'required',
             'responsable' => 'required'
-        ]); */
+        ]); 
 
     
         
@@ -204,11 +176,7 @@ class ProjectController extends Controller
     }
 
     
-<<<<<<< HEAD
     public function destroy(project $project)
-=======
-    public function destroy(project $project, $id)
->>>>>>> 47dab2173e78b124616b586469e0ab9c1bc70aba
     {
         
     }
