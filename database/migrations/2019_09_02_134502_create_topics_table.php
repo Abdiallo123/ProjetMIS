@@ -14,12 +14,12 @@ class CreateTopicsTable extends Migration
     public function up()
     {
         Schema::create('topics', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id',true);
             $table->string('titre');
             $table->unsignedBigInteger('type_id');
             $table->string('contenu_lien')->nullable();
             $table->text('contenu_fichier')->nullable();
-            $table->unsignedBigInteger('utilisateur_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('mot_cle');
             $table->timestamps();
 
